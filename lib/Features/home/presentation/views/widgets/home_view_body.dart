@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/assets.dart';
+import '../../../../../constants.dart';
 import '../../../../../core/utils/styles.dart';
+import 'best_seller_list_view_item.dart';
 import 'books_list_view.dart';
 import 'custom_app_bar.dart';
 
@@ -11,43 +12,18 @@ class HomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        CustomAppBar(),
-        BooksListView(),
-        SizedBox(height: 32),
+        const CustomAppBar(),
+        const BooksListView(),
+        const SizedBox(height: 32),
         Text(
           "Best Seller",
-          style: Styles.titleMedium,
+          style: Styles.textStyle18.copyWith(fontFamily: kGtSectraFine),
         ),
-        BestSellerListViewItem()
+        const SizedBox(height: 20),
+        const BestSellerListViewItem()
       ]),
-    );
-  }
-}
-
-class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 125,
-      child: Row(
-        children: [
-          AspectRatio(
-            aspectRatio: 2.5 / 4,
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadiusDirectional.circular(16),
-                  image: const DecorationImage(
-                    image: AssetImage(AssetsData.testImage),
-                    fit: BoxFit.fill,
-                  )),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
