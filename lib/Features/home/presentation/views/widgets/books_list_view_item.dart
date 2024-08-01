@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../../../core/utils/assets.dart';
 
-class CustomListViewItem extends StatelessWidget {
-  const CustomListViewItem({super.key});
+class BooksListViewItem extends StatelessWidget {
+  const BooksListViewItem({super.key});
 
   @override
   Widget build(BuildContext context) {
