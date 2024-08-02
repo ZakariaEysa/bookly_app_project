@@ -8,12 +8,14 @@ class CustomButton extends StatelessWidget {
       required this.backGroundColor,
       required this.borderRadius,
       required this.text,
-      required this.textColor});
+      required this.textColor,
+      this.fontSize});
 
   final Color backGroundColor;
   final BorderRadiusGeometry borderRadius;
   final String text;
   final Color textColor;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +31,10 @@ class CustomButton extends StatelessWidget {
           ),
           child: Text(
             text,
-            style: Styles.textStyle18
-                .copyWith(fontWeight: FontWeight.w900, color: textColor),
+            style: Styles.textStyle18.copyWith(
+                fontWeight: FontWeight.w900,
+                color: textColor,
+                fontSize: fontSize),
           )),
     );
 
