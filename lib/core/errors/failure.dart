@@ -38,7 +38,7 @@ class ServerFailure extends Failure {
         return ServerFailure("Unexpected error");
 
       default:
-        return ServerFailure("Something went wrong");
+        return ServerFailure(dioException.message ?? "something went wrong");
     }
   }
 

@@ -16,11 +16,16 @@ class BestSellerListView extends StatelessWidget {
         if (state is NewestBooksSuccess) {
           return ListView.builder(
               padding: EdgeInsets.zero,
-              itemCount: 10,
+              itemCount: state.books.length,
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return const BookListViewItem();
+                return Padding(
+                  padding: const EdgeInsetsDirectional.symmetric(vertical: 8),
+                  child: BookListViewItem(
+                    bookModel: state.books[index],
+                  ),
+                );
               });
         } else if (state is NewestBooksFailure) {
           return CustomErrorWidget(state.error);

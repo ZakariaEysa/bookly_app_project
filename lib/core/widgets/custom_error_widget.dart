@@ -10,6 +10,7 @@ class CustomErrorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
+      textAlign: TextAlign.center,
       message,
       style: Styles.textStyle18,
     );

@@ -1,4 +1,3 @@
-import 'package:bookly_app_project/Features/search/presentation/views/widgets/search_result_list_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../constants.dart';
@@ -29,8 +28,8 @@ class SearchViewBody extends StatelessWidget {
             ),
           ),
           const SliverFillRemaining(
-            child: SearchResultListView(),
-          )
+              //     child: SearchResultListView(),
+              )
           //    const SliverFillRemaining(child: SearchResultListView()),
         ],
       ),

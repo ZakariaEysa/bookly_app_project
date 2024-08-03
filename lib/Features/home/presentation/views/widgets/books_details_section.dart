@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/styles.dart';
-import 'book_rating.dart';
 import 'books_action.dart';
 import 'books_list_view_item.dart';
 
@@ -42,9 +41,10 @@ class BookDetailsSection extends StatelessWidget {
         const SizedBox(
           height: 18,
         ),
-        const BookRating(
-          alignment: MainAxisAlignment.center,
-        ),
+        // BookRating(
+        //   count: bookmodel.volumeInfo!.pageCount,
+        //   alignment: MainAxisAlignment.center,
+        // ),
         const SizedBox(
           height: 37,
         ),
