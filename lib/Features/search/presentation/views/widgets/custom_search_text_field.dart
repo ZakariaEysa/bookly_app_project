@@ -13,7 +13,7 @@ class CustomSearchTextField extends StatelessWidget {
         hintText: 'Search',
         suffixIcon: IconButton(
           onPressed: () {},
-          icon: Opacity(
+          icon: const Opacity(
             opacity: .8,
             child: Icon(
               FontAwesomeIcons.magnifyingGlass,

@@ -19,12 +19,12 @@ class SearchViewBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Text(
                   "Search Result",
                   style: Styles.textStyle18.copyWith(fontFamily: kGtSectraFine),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
               ],
             ),
           ),
