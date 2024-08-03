@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../../../core/utils/assets.dart';
-
 class BooksListViewItem extends StatelessWidget {
-  const BooksListViewItem({super.key});
+  const BooksListViewItem({super.key, required this.imageUrl});
+
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +12,8 @@ class BooksListViewItem extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadiusDirectional.circular(16),
-            image: const DecorationImage(
-              image: AssetImage(AssetsData.testImage),
+            image: DecorationImage(
+              image: NetworkImage(imageUrl),
               fit: BoxFit.fill,
             )),
       ),

@@ -15,7 +15,7 @@ class NewestBooksCubit extends Cubit<NewestBooksState> {
     emit(NewestBooksLoading());
     var result = await homeRepo.fetchNewestBooks();
     result.fold((failure) {
-      emit(NewestBooksFailure(failure.toString()));
+      emit(NewestBooksFailure(failure.errorMessage.toString()));
     }, (books) {
       emit(NewestBooksSuccess(books));
     });

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
+import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/styles.dart';
 import 'book_rating.dart';
 import 'books_action.dart';
@@ -16,7 +17,9 @@ class BookDetailsSection extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * .2),
-          child: const BooksListViewItem(),
+          child: const BooksListViewItem(
+            imageUrl: AssetsData.testImage,
+          ),
         ),
         const SizedBox(
           height: 43,
