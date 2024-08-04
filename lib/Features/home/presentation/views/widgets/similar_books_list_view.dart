@@ -1,5 +1,9 @@
+import 'package:bookly_app_project/Features/home/presentation/view_model/related_books_cubit/related_books_cubit.dart';
 import 'package:bookly_app_project/core/utils/assets.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:bookly_app_project/core/widgets/custom_error_widget.dart';
+import 'package:bookly_app_project/core/widgets/custom_loading_indicator.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'books_list_view_item.dart';
 
@@ -8,19 +12,31 @@ class SimilarBooksListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.sizeOf(context).height * .17,
-      child: Padding(
-        padding: const EdgeInsetsDirectional.only(start: 18),
-        child: ListView.builder(
-          padding: EdgeInsets.zero,
-          itemBuilder: (context, index) => const BooksListViewItem(
-            imageUrl: AssetsData.testImage,
-          ),
-          scrollDirection: Axis.horizontal,
-          itemCount: 15,
-        ),
-      ),
+    return BlocBuilder<RelatedBooksCubit, RelatedBooksState>(
+      builder: (context, state) {
+        if (state is RelatedBooksSuccess) {
+          return SizedBox(
+            height: MediaQuery.sizeOf(context).height * .17,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.only(start: 18),
+              child: ListView.builder(
+                padding: EdgeInsets.zero,
+                itemBuilder: (context, index) => const BooksListViewItem(
+                  imageUrl: AssetsData.testImage,
+                ),
+                scrollDirection: Axis.horizontal,
+                itemCount: 15,
+              ),
+            ),
+          );
+        } else if (state is RelatedBooksFailure) {
+          return CustomErrorWidget(state.message);
+        } else {
+          return const Center(
+            child: CustomLoadingIndicator(),
+          );
+        }
+      },
     );
   }
 }
