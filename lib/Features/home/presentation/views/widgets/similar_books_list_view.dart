@@ -4,6 +4,7 @@ import 'package:bookly_app_project/core/widgets/custom_error_widget.dart';
 import 'package:bookly_app_project/core/widgets/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import 'books_list_view_item.dart';
 
@@ -23,10 +24,16 @@ class SimilarBooksListView extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) => Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: BooksListViewItem(
-                    imageUrl:
-                        state.books[index].volumeInfo?.imageLinks?.thumbnail ??
-                            AssetsData.testImage,
+                  child: GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).pushReplacement('/bookDetailsView',
+                          extra: state.books[index]);
+                    },
+                    child: BooksListViewItem(
+                      imageUrl: state
+                              .books[index].volumeInfo?.imageLinks?.thumbnail ??
+                          AssetsData.testImage,
+                    ),
                   ),
                 ),
                 scrollDirection: Axis.horizontal,

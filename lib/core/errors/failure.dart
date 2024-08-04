@@ -30,7 +30,7 @@ class ServerFailure extends Failure {
         return ServerFailure("Bad certificate");
 
       case DioExceptionType.connectionError:
-        return ServerFailure("Connection error");
+        return ServerFailure(" No Internet Connection ");
       case DioExceptionType.unknown:
         if (dioException.message!.contains('SocketException')) {
           return ServerFailure("No Internet connection");
