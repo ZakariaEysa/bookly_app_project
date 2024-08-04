@@ -20,12 +20,17 @@ class SimilarBooksListView extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsetsDirectional.only(start: 18),
               child: ListView.builder(
-                padding: EdgeInsets.zero,
-                itemBuilder: (context, index) => const BooksListViewItem(
-                  imageUrl: AssetsData.testImage,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: BooksListViewItem(
+                    imageUrl:
+                        state.books[index].volumeInfo?.imageLinks?.thumbnail ??
+                            AssetsData.testImage,
+                  ),
                 ),
                 scrollDirection: Axis.horizontal,
-                itemCount: 15,
+                itemCount: state.books.length,
               ),
             ),
           );

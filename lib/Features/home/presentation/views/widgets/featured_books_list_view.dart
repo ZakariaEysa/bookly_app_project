@@ -2,6 +2,7 @@ import 'package:bookly_app_project/Features/home/data/models/book_model/book_mod
 import 'package:bookly_app_project/Features/home/presentation/view_model/featured_books_cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/widgets/custom_error_widget.dart';
@@ -25,9 +26,16 @@ class FeaturedBooksListView extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) => Padding(
                   padding: const EdgeInsetsDirectional.only(end: 12),
-                  child: BooksListViewItem(
-                    imageUrl: books[index].volumeInfo?.imageLinks?.thumbnail ??
-                        AssetsData.testImage,
+                  child: GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context)
+                          .push('/bookDetailsView', extra: state.books[index]);
+                    },
+                    child: BooksListViewItem(
+                      imageUrl:
+                          books[index].volumeInfo?.imageLinks?.thumbnail ??
+                              AssetsData.testImage,
+                    ),
                   ),
                 ),
                 scrollDirection: Axis.horizontal,

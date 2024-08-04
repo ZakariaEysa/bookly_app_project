@@ -3,6 +3,7 @@ import 'package:bookly_app_project/Features/home/presentation/view_model/related
 import 'package:bookly_app_project/Features/home/presentation/views/widgets/book_details_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../constants.dart';
 
@@ -29,7 +30,9 @@ class _BookDetailsViewState extends State<BookDetailsView> {
       appBar: AppBar(
           backgroundColor: kPrimaryColor,
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              GoRouter.of(context).pop();
+            },
             icon: const Icon(Icons.close),
           ),
           actions: [
@@ -38,7 +41,10 @@ class _BookDetailsViewState extends State<BookDetailsView> {
               icon: const Icon(Icons.shopping_cart_checkout_outlined),
             ),
           ]),
-      body: const SafeArea(child: BookDetailsViewBody()),
+      body: SafeArea(
+          child: BookDetailsViewBody(
+        bookModel: widget.bookModel,
+      )),
     );
   }
 }
