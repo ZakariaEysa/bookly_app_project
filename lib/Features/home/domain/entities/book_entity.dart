@@ -2,8 +2,9 @@ class BookEntity {
   final String image;
   final String title;
   final String authorName;
-  final String price;
   final String name;
+
+  final String price;
 
   BookEntity(
       {required this.image,
