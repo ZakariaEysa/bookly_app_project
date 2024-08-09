@@ -1,4 +1,5 @@
 import 'package:bookly_app_project/Features/home/data/models/book_model/book_model.dart';
+import 'package:bookly_app_project/Features/home/domain/entities/book_entity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -12,7 +13,7 @@ import 'books_list_view_item.dart';
 class BookListViewItem extends StatelessWidget {
   const BookListViewItem({super.key, required this.bookModel});
 
-  final BookModel bookModel;
+  final BookEntity bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +26,7 @@ class BookListViewItem extends StatelessWidget {
         child: Row(
           children: [
             BooksListViewItem(
-                imageUrl: bookModel.volumeInfo?.imageLinks?.thumbnail ??
-                    AssetsData.testImage),
+                imageUrl: bookModel.image ?? AssetsData.testImage),
             const SizedBox(
               width: 30,
             ),
@@ -37,7 +37,7 @@ class BookListViewItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.sizeOf(context).width * .5,
                     child: Text(
-                      bookModel.volumeInfo!.title!,
+                      bookModel.title,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: Styles.textStyle20.copyWith(
@@ -49,7 +49,7 @@ class BookListViewItem extends StatelessWidget {
                     height: 3,
                   ),
                   Text(
-                    bookModel.volumeInfo!.authors![0],
+                    bookModel.authorName ?? 'Unknown',
                     style: Styles.textStyle14,
                     maxLines: 1,
                   ),
@@ -66,8 +66,8 @@ class BookListViewItem extends StatelessWidget {
                         ),
                       ),
                       BookRating(
-                        count: bookModel.volumeInfo!.pageCount ?? 0,
-                        rating: bookModel.volumeInfo!.maturityRating ?? "0.0",
+                        count: 3,
+                        rating: "3.5",
                       )
                     ],
                   )

@@ -11,7 +11,7 @@ class BooksListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
-      child: AspectRatio(
+      child: AspectRatio( 
           aspectRatio: 2.6 / 4,
           child: CachedNetworkImage(
             imageUrl: imageUrl,
