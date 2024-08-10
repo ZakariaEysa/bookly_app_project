@@ -1,5 +1,3 @@
-import '../../../data/models/book_model/book_model.dart';
-import '../../../domain/entities/book_entity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../domain/entities/book_entity.dart';
 import 'book_rating.dart';
 import 'books_list_view_item.dart';
 
@@ -65,7 +64,7 @@ class BookListViewItem extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      BookRating(
+                      const BookRating(
                         count: 3,
                         rating: "3.5",
                       )

@@ -1,17 +1,15 @@
-import '../../../data/models/book_model/book_model.dart';
-import '../../../domain/entities/book_entity.dart';
-import '../../view_model/featured_books_cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/assets.dart';
-import '../../../../../core/widgets/custom_error_widget.dart';
-import '../../../../../core/widgets/custom_loading_indicator.dart';
+import '../../../domain/entities/book_entity.dart';
+import '../../view_model/featured_books_cubit/featured_books_cubit.dart';
 import 'books_list_view_item.dart';
 
 class FeaturedBooksListView extends StatefulWidget {
   const FeaturedBooksListView({super.key, required this.books});
+
   final List<BookEntity> books;
 
   @override
@@ -22,6 +20,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
   late ScrollController _scrollController;
   var nextPage = 1;
   bool isLoading = false;
+
   @override
   initState() {
     _scrollController = ScrollController();

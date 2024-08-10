@@ -13,8 +13,8 @@ class FeaturedBooksListViewLoadingIndicator extends StatelessWidget {
           padding: const EdgeInsetsDirectional.only(start: 18),
           child: ListView.builder(
             physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsetsDirectional.only(end: 12),
+            itemBuilder: (context, index) => const Padding(
+              padding: EdgeInsetsDirectional.only(end: 12),
               child: CustomBookImageLoadingIndicator(),
             ),
             scrollDirection: Axis.horizontal,

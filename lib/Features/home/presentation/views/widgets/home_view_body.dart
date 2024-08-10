@@ -1,11 +1,10 @@
-import 'best_seller_list_view.dart';
-import 'featured_books_list_view_bloc_consumer_.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/utils/styles.dart';
+import 'best_seller_list_view.dart';
 import 'custom_home_view_app_bar.dart';
-import 'featured_books_list_view.dart';
+import 'featured_books_list_view_bloc_consumer_.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -22,7 +21,7 @@ class HomeViewBody extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: CustomHomeViewAppBar(),
             ),
-          FeaturedBooksListViewBlocConsumer(),
+            const FeaturedBooksListViewBlocConsumer(),
             const SizedBox(height: 32),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),

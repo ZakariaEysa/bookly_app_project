@@ -41,7 +41,7 @@ class _FeaturedBooksListViewBlocConsumerState
             state is FeaturedBooksPaginationFailure) {
           return FeaturedBooksListView(books: books);
         } else if (state is FeaturedBooksLoading) {
-          return FeaturedBooksListViewLoadingIndicator();
+          return const FeaturedBooksListViewLoadingIndicator();
         } else if (state is FeaturedBooksFailure) {
           return CustomErrorWidget(state.error);
         } else {

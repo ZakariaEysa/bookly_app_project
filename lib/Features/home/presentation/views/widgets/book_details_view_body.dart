@@ -1,8 +1,7 @@
-import '../../../data/models/book_model/book_model.dart';
 import 'package:flutter/material.dart';
 
+import '../../../data/models/book_model/book_model.dart';
 import 'books_details_section.dart';
-import 'books_similar_section.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
   const BookDetailsViewBody({super.key, required this.bookModel});

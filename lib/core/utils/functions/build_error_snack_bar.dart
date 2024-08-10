@@ -1,4 +1,3 @@
-import '../../../Features/home/presentation/view_model/featured_books_cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
 
 SnackBar buildErrorSnackBar(String error) {
@@ -7,7 +6,7 @@ SnackBar buildErrorSnackBar(String error) {
     content: Text(
       textAlign: TextAlign.center,
       error,
-      style: TextStyle(color: Colors.black),
+      style: const TextStyle(color: Colors.black),
     ),
     duration: const Duration(seconds: 3),
   );

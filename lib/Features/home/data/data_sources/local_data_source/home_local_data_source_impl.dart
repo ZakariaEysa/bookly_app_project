@@ -1,15 +1,14 @@
-import 'home_local_data_source.dart';
-import '../../../domain/entities/book_entity.dart';
-import '../../../../../constants.dart';
 import 'package:hive/hive.dart';
+
+import '../../../../../constants.dart';
+import '../../../domain/entities/book_entity.dart';
+import 'home_local_data_source.dart';
 
 class HomeLocalDataSourceImpl extends HomeLocalDataSource {
   @override
   List<BookEntity> fetchFeaturedBooks({int pageNumber = 0}) {
     int startIndex = pageNumber * 10;
     int endIndex = (pageNumber + 1) * 10;
-
-    print(pageNumber);
 
     var box = Hive.box<BookEntity>(kFeaturedBooks);
     int length = box.length;
