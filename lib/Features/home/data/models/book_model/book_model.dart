@@ -31,7 +31,8 @@ class BookModel extends BookEntity with EquatableMixin {
             title: volumeInfo?.title ?? '',
             bookId: id ?? '',
             name: volumeInfo?.authors?.first ?? '',
-            previewLink: volumeInfo?.previewLink ?? '');
+            previewLink: volumeInfo?.previewLink ?? '',
+            category: volumeInfo?.categories?.first ?? '');
 
   factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
         kind: json['kind'] as String?,

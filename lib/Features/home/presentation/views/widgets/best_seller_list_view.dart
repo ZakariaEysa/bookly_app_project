@@ -22,6 +22,7 @@ class _BestSellerListViewState extends State<BestSellerListView> {
   var nextPage = 1;
   bool isLoading = false;
 
+  @override
   initState() {
     _scrollController = ScrollController();
     super.initState();

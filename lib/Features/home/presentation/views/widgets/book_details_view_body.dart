@@ -2,6 +2,7 @@ import 'package:bookly_app_project/Features/home/domain/entities/book_entity.dar
 import 'package:flutter/material.dart';
 
 import 'books_details_section.dart';
+import 'books_similar_section.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
   const BookDetailsViewBody({super.key, required this.bookModel});
@@ -27,7 +28,7 @@ class BookDetailsViewBody extends StatelessWidget {
                     height: 40,
                   ),
                 ),
-                //   const SimilarBooksSection(),
+                const SimilarBooksSection(),
                 const SizedBox(
                   height: 40,
                 ),

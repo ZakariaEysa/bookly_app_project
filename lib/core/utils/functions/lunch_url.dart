@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Future<void> customLaunchUrl(BuildContext context, String previewLink) async {
-  if (previewLink != null) {
-    final Uri url = Uri.parse(previewLink ?? '');
+  if (previewLink.isNotEmpty) {
+    final Uri url = Uri.parse(previewLink);
 
     if (await canLaunchUrl(url)) {
       await launchUrl(url);

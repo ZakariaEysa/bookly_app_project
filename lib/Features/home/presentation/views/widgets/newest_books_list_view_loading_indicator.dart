@@ -13,8 +13,8 @@ class NewestBooksListViewLoadingIndicator extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          return Padding(
-              padding: const EdgeInsetsDirectional.symmetric(vertical: 8),
+          return const Padding(
+              padding: EdgeInsetsDirectional.symmetric(vertical: 8),
               child: CustomNewestBooksItemLoadingIndicator());
         });
   }

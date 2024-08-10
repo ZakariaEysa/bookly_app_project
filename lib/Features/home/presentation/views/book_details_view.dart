@@ -1,8 +1,10 @@
 import 'package:bookly_app_project/Features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../constants.dart';
+import '../view_model/related_books_cubit/related_books_cubit.dart';
 import 'widgets/book_details_view_body.dart';
 
 class BookDetailsView extends StatefulWidget {
@@ -17,8 +19,8 @@ class BookDetailsView extends StatefulWidget {
 class _BookDetailsViewState extends State<BookDetailsView> {
   @override
   void initState() {
-    // BlocProvider.of<RelatedBooksCubit>(context).fetchRelatedBooks(
-    //     category: widget.bookModel.volumeInfo!.categories![0]);
+    BlocProvider.of<RelatedBooksCubit>(context)
+        .fetchRelatedBooks(category: widget.bookModel.category);
     super.initState();
   }
 
