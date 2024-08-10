@@ -18,19 +18,26 @@ class FeaturedBooksListView extends StatefulWidget {
 }
 
 class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
+  List<BookEntity> books = [];
   late ScrollController _scrollController;
+  var nextPage = 1;
+  bool isLoading = false;
   @override
   initState() {
     _scrollController = ScrollController();
     super.initState();
-    _scrollController.addListener(() {
+    _scrollController.addListener(() async {
       double maxScroll = _scrollController.position.maxScrollExtent;
       double currentScroll = _scrollController.position.pixels;
       double threshold = maxScroll * 0.7;
 
       if (currentScroll >= threshold) {
-        BlocProvider.of<FeaturedBooksCubit>(context)
-            .fetchFeaturedBooks(pageNumber: 2);
+        if (!isLoading) {
+          isLoading = true;
+          await BlocProvider.of<FeaturedBooksCubit>(context)
+              .fetchFeaturedBooks(pageNumber: nextPage++);
+          isLoading = false;
+        }
       }
     });
   }
@@ -43,11 +50,15 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
+    return BlocConsumer<FeaturedBooksCubit, FeaturedBooksState>(
+      listener: (context, state) {
+        if ((state is FeaturedBooksSuccess)) {
+          books.addAll(state.books);
+        }
+      },
       builder: (context, state) {
-        if (state is FeaturedBooksSuccess) {
-          List<BookEntity> books = state.books;
-
+        if (state is FeaturedBooksSuccess ||
+            state is FeaturedBooksPaginationLoading) {
           return SizedBox(
             height: MediaQuery.sizeOf(context).height * .3,
             child: Padding(
@@ -60,7 +71,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
                   child: GestureDetector(
                     onTap: () {
                       GoRouter.of(context)
-                          .push('/bookDetailsView', extra: state.books[index]);
+                          .push('/bookDetailsView', extra: books[index]);
                     },
                     child: BooksListViewItem(
                       imageUrl: books[index].image ?? AssetsData.testImage,
