@@ -11,17 +11,20 @@ class BooksListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
-      child: AspectRatio( 
-          aspectRatio: 2.6 / 4,
-          child: CachedNetworkImage(
-            imageUrl: imageUrl,
-            fit: BoxFit.fill,
-            // ignore: prefer_const_constructors
-            errorWidget: (context, url, error) => Icon(Icons.error),
-            placeholder: (context, url) => const Center(
-              child: CupertinoActivityIndicator(),
-            ),
-          )),
+      child: AspectRatio(
+        aspectRatio: 2.6 / 4,
+        child: imageUrl.isNotEmpty
+            ? CachedNetworkImage(
+                imageUrl: imageUrl,
+                fit: BoxFit.fill,
+                // ignore: prefer_const_constructors
+                errorWidget: (context, url, error) => Icon(Icons.error),
+                placeholder: (context, url) => const Center(
+                  child: CupertinoActivityIndicator(),
+                ),
+              )
+            : Icon(Icons.error),
+      ),
     );
   }
 }
