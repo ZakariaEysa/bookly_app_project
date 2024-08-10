@@ -14,12 +14,15 @@ class BookEntity {
   final String name;
   @HiveField(4)
   final String bookId;
+  @HiveField(5)
+  final String previewLink;
 
   const BookEntity({
     required this.image,
     required this.title,
     required this.authorName,
     required this.name,
+    required this.previewLink,
     required this.bookId,
   });
 }

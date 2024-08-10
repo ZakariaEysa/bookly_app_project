@@ -31,8 +31,14 @@ class HomeLocalDataSourceImpl extends HomeLocalDataSource {
   }
 
   @override
-  List<BookEntity> fetchRelatedBooks({required String category}) {
-    // TODO: implement fetchRelatedBooks
-    throw UnimplementedError();
+  List<BookEntity> fetchRelatedBooks({int pageNumber = 0}) {
+    int startIndex = pageNumber * 10;
+    int endIndex = (pageNumber + 1) * 10;
+    var box = Hive.box<BookEntity>(kRelatedBooks);
+    int length = box.length;
+    if (startIndex >= length || endIndex > length) {
+      return [];
+    }
+    return box.values.toList().sublist(startIndex, endIndex);
   }
 }

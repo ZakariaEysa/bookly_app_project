@@ -60,8 +60,10 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
             padding: const EdgeInsetsDirectional.only(end: 12),
             child: GestureDetector(
               onTap: () {
-                GoRouter.of(context)
-                    .push('/bookDetailsView', extra: widget.books[index]);
+                if (widget.books[index].image != null) {
+                  GoRouter.of(context)
+                      .push('/bookDetailsView', extra: widget.books[index]);
+                }
               },
               child: BooksListViewItem(
                 imageUrl: widget.books[index].image ?? AssetsData.testImage,

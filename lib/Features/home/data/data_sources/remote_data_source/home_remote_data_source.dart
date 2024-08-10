@@ -5,5 +5,6 @@ abstract class HomeRemoteDataSource {
 
   Future<List<BookEntity>> fetchFeaturedBooks({int pageNumber = 0});
 
-  Future<List<BookEntity>> fetchRelatedBooks({required String category});
+  Future<List<BookEntity>> fetchRelatedBooks(
+      {required String category, int pageNumber = 0});
 }

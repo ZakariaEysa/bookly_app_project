@@ -1,12 +1,12 @@
+import 'package:bookly_app_project/Features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
 
-import '../../../data/models/book_model/book_model.dart';
 import 'books_details_section.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
   const BookDetailsViewBody({super.key, required this.bookModel});
 
-  final BookModel bookModel;
+  final BookEntity bookModel;
 
   @override
   Widget build(BuildContext context) {

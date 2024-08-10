@@ -5,5 +5,5 @@ abstract class HomeLocalDataSource {
 
   List<BookEntity> fetchFeaturedBooks({int pageNumber = 0});
 
-  List<BookEntity> fetchRelatedBooks({required String category});
+  List<BookEntity> fetchRelatedBooks({int pageNumber = 0});
 }

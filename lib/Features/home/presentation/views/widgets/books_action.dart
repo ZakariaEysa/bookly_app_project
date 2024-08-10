@@ -1,4 +1,4 @@
-import '../../../data/models/book_model/book_model.dart';
+import 'package:bookly_app_project/Features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/functions/lunch_url.dart';
@@ -7,7 +7,7 @@ import '../../../../../core/widgets/custom_button.dart';
 class BooksAction extends StatelessWidget {
   const BooksAction({super.key, required this.bookModel});
 
-  final BookModel bookModel;
+  final BookEntity bookModel;
 
   @override
   @override
@@ -28,7 +28,7 @@ class BooksAction extends StatelessWidget {
           ),
           Expanded(
             child: CustomButton(
-              onPressed: () => customLaunchUrl(context, bookModel),
+              onPressed: () => customLaunchUrl(context, bookModel.previewLink),
               fontSize: 16,
               textColor: Colors.white,
               text: getText,
@@ -45,7 +45,7 @@ class BooksAction extends StatelessWidget {
   }
 
   String get getText {
-    if (bookModel.volumeInfo?.previewLink != null) {
+    if (bookModel.previewLink != null) {
       return 'Preview';
     } else {
       return 'Not Available';

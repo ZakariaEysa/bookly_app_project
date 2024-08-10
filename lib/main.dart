@@ -21,6 +21,8 @@ void main() async {
   Hive.registerAdapter(BookEntityAdapter());
   await Hive.openBox<BookEntity>(kFeaturedBooks);
   await Hive.openBox<BookEntity>(kNewestBooks);
+  await Hive.openBox<BookEntity>(kRelatedBooks);
+
   Bloc.observer = SimpleBlocObserver();
 
   runApp(const BooklyApp());

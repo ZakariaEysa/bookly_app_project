@@ -1,4 +1,4 @@
-import '../../../data/models/book_model/book_model.dart';
+import 'package:bookly_app_project/Features/home/domain/entities/book_entity.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../../core/utils/assets.dart';
@@ -10,7 +10,7 @@ import 'books_list_view_item.dart';
 class BookDetailsSection extends StatelessWidget {
   const BookDetailsSection({super.key, required this.bookModel});
 
-  final BookModel bookModel;
+  final BookEntity bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +21,7 @@ class BookDetailsSection extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * .2),
           child: BooksListViewItem(
-            imageUrl: bookModel.volumeInfo?.imageLinks?.thumbnail ??
-                AssetsData.testImage,
+            imageUrl: bookModel.image ?? AssetsData.testImage,
           ),
         ),
         const SizedBox(
@@ -30,7 +29,7 @@ class BookDetailsSection extends StatelessWidget {
         ),
         Text(
           textAlign: TextAlign.center,
-          bookModel.volumeInfo!.title!,
+          bookModel.title,
           style: Styles.textStyle30.copyWith(fontWeight: FontWeight.bold),
           maxLines: 1,
         ),
@@ -40,7 +39,7 @@ class BookDetailsSection extends StatelessWidget {
         Opacity(
           opacity: .7,
           child: Text(
-            bookModel.volumeInfo!.authors![0],
+            bookModel.authorName ?? 'No Author',
             style: Styles.textStyle18.copyWith(
                 fontWeight: FontWeight.w500, fontStyle: FontStyle.italic),
           ),
@@ -49,7 +48,7 @@ class BookDetailsSection extends StatelessWidget {
           height: 18,
         ),
         BookRating(
-          count: bookModel.volumeInfo?.pageCount ?? 0,
+          count: 0,
           alignment: MainAxisAlignment.center,
           rating: '3.8',
         ),
