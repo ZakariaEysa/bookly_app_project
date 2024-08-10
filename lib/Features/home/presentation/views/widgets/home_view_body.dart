@@ -1,4 +1,5 @@
 import 'package:bookly_app_project/Features/home/presentation/views/widgets/best_seller_list_view.dart';
+import 'package:bookly_app_project/Features/home/presentation/views/widgets/featured_books_list_view_bloc_consumer_.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../constants.dart';
@@ -21,7 +22,7 @@ class HomeViewBody extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: CustomHomeViewAppBar(),
             ),
-            const FeaturedBooksListView(),
+          FeaturedBooksListViewBlocConsumer(),
             const SizedBox(height: 32),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),

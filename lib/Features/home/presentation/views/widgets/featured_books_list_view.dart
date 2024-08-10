@@ -11,14 +11,14 @@ import '../../../../../core/widgets/custom_loading_indicator.dart';
 import 'books_list_view_item.dart';
 
 class FeaturedBooksListView extends StatefulWidget {
-  const FeaturedBooksListView({super.key});
+  const FeaturedBooksListView({super.key, required this.books});
+  final List<BookEntity> books;
 
   @override
   State<FeaturedBooksListView> createState() => _FeaturedBooksListViewState();
 }
 
 class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
-  List<BookEntity> books = [];
   late ScrollController _scrollController;
   var nextPage = 1;
   bool isLoading = false;
@@ -50,45 +50,29 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<FeaturedBooksCubit, FeaturedBooksState>(
-      listener: (context, state) {
-        if ((state is FeaturedBooksSuccess)) {
-          books.addAll(state.books);
-        }
-      },
-      builder: (context, state) {
-        if (state is FeaturedBooksSuccess ||
-            state is FeaturedBooksPaginationLoading) {
-          return SizedBox(
-            height: MediaQuery.sizeOf(context).height * .3,
-            child: Padding(
-              padding: const EdgeInsetsDirectional.only(start: 18),
-              child: ListView.builder(
-                controller: _scrollController,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsetsDirectional.only(end: 12),
-                  child: GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context)
-                          .push('/bookDetailsView', extra: books[index]);
-                    },
-                    child: BooksListViewItem(
-                      imageUrl: books[index].image ?? AssetsData.testImage,
-                    ),
-                  ),
-                ),
-                scrollDirection: Axis.horizontal,
-                itemCount: books.length,
+    return SizedBox(
+      height: MediaQuery.sizeOf(context).height * .3,
+      child: Padding(
+        padding: const EdgeInsetsDirectional.only(start: 18),
+        child: ListView.builder(
+          controller: _scrollController,
+          physics: const BouncingScrollPhysics(),
+          itemBuilder: (context, index) => Padding(
+            padding: const EdgeInsetsDirectional.only(end: 12),
+            child: GestureDetector(
+              onTap: () {
+                GoRouter.of(context)
+                    .push('/bookDetailsView', extra: widget.books[index]);
+              },
+              child: BooksListViewItem(
+                imageUrl: widget.books[index].image ?? AssetsData.testImage,
               ),
             ),
-          );
-        } else if (state is FeaturedBooksFailure) {
-          return CustomErrorWidget(state.error);
-        } else {
-          return const CustomLoadingIndicator();
-        }
-      },
+          ),
+          scrollDirection: Axis.horizontal,
+          itemCount: widget.books.length,
+        ),
+      ),
     );
   }
 }

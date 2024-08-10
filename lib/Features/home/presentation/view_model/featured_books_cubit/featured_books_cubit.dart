@@ -15,6 +15,8 @@ class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
 
   final FetchFeaturedBooksUseCase fetchFeaturedBooksUseCase;
   Future<void> fetchFeaturedBooks({int pageNumber = 0}) async {
+    emit(FeaturedBooksPaginationFailure("error"));
+
     if (pageNumber == 0) {
       emit(FeaturedBooksLoading());
     }
