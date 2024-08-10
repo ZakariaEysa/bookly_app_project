@@ -1,4 +1,4 @@
-import 'package:bookly_app_project/core/errors/failure.dart';
+import '../errors/failure.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class UseCase<T, Param> {

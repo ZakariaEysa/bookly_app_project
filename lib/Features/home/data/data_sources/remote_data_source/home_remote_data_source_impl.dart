@@ -1,6 +1,6 @@
-import 'package:bookly_app_project/Features/home/data/models/book_model/book_model.dart';
-import 'package:bookly_app_project/Features/home/domain/entities/book_entity.dart';
-import 'package:bookly_app_project/core/utils/functions/save_box_data.dart';
+import '../../models/book_model/book_model.dart';
+import '../../../domain/entities/book_entity.dart';
+import '../../../../../core/utils/functions/save_box_data.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/utils/api_service.dart';

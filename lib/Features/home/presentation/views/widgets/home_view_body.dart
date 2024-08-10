@@ -1,5 +1,5 @@
-import 'package:bookly_app_project/Features/home/presentation/views/widgets/best_seller_list_view.dart';
-import 'package:bookly_app_project/Features/home/presentation/views/widgets/featured_books_list_view_bloc_consumer_.dart';
+import 'best_seller_list_view.dart';
+import 'featured_books_list_view_bloc_consumer_.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../constants.dart';

@@ -1,4 +1,4 @@
-import 'package:bookly_app_project/Features/home/presentation/view_model/featured_books_cubit/featured_books_cubit.dart';
+import '../../../Features/home/presentation/view_model/featured_books_cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
 
 SnackBar buildErrorSnackBar(String error) {

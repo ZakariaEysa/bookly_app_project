@@ -1,9 +1,9 @@
-import 'package:bookly_app_project/Features/home/data/data_sources/local_data_source/home_local_data_source.dart';
-import 'package:bookly_app_project/Features/home/data/data_sources/remote_data_source/home_remote_data_source.dart';
-import 'package:bookly_app_project/Features/home/data/models/book_model/book_model.dart';
-import 'package:bookly_app_project/Features/home/domain/entities/book_entity.dart';
-import 'package:bookly_app_project/core/errors/failure.dart';
-import 'package:bookly_app_project/core/utils/api_service.dart';
+import '../data_sources/local_data_source/home_local_data_source.dart';
+import '../data_sources/remote_data_source/home_remote_data_source.dart';
+import '../models/book_model/book_model.dart';
+import '../../domain/entities/book_entity.dart';
+import '../../../../core/errors/failure.dart';
+import '../../../../core/utils/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 

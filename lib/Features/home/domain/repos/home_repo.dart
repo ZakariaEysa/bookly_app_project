@@ -1,5 +1,5 @@
-import 'package:bookly_app_project/Features/home/domain/entities/book_entity.dart';
-import 'package:bookly_app_project/core/errors/failure.dart';
+import '../entities/book_entity.dart';
+import '../../../../core/errors/failure.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class HomeRepo {

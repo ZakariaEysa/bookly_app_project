@@ -1,6 +1,6 @@
-import 'package:bookly_app_project/Features/home/data/data_sources/local_data_source/home_local_data_source.dart';
-import 'package:bookly_app_project/Features/home/domain/entities/book_entity.dart';
-import 'package:bookly_app_project/constants.dart';
+import 'home_local_data_source.dart';
+import '../../../domain/entities/book_entity.dart';
+import '../../../../../constants.dart';
 import 'package:hive/hive.dart';
 
 class HomeLocalDataSourceImpl extends HomeLocalDataSource {

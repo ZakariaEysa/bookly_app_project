@@ -1,5 +1,5 @@
-import 'package:bookly_app_project/Features/home/data/models/book_model/book_model.dart';
-import 'package:bookly_app_project/Features/home/domain/entities/book_entity.dart';
+import '../../../data/models/book_model/book_model.dart';
+import '../../../domain/entities/book_entity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

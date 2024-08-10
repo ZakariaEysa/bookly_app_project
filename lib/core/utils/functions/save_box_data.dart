@@ -1,4 +1,4 @@
- import 'package:bookly_app_project/Features/home/data/models/book_model/book_model.dart';
+import '../../../Features/home/data/models/book_model/book_model.dart';
 import 'package:hive_flutter/adapters.dart';
 
 import '../../../Features/home/domain/entities/book_entity.dart';

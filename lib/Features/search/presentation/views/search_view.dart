@@ -1,4 +1,4 @@
-import 'package:bookly_app_project/Features/search/presentation/views/widgets/search_view_body.dart';
+import 'widgets/search_view_body.dart';
 import 'package:flutter/material.dart';
 
 class SearchView extends StatelessWidget {
