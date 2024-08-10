@@ -1,16 +1,13 @@
-import '../../../data/models/book_model/book_model.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../core/utils/functions/build_error_snack_bar.dart';
+import '../../../../../core/widgets/custom_error_widget.dart';
+import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../domain/entities/book_entity.dart';
 import '../../view_model/featured_books_cubit/featured_books_cubit.dart';
 import 'featured_books_list_view.dart';
 import 'featured_books_list_view_loading_indicator.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../../../../core/utils/assets.dart';
-import '../../../../../core/utils/functions/build_error_snack_bar.dart';
-import '../../../../../core/widgets/custom_error_widget.dart';
-import '../../../../../core/widgets/custom_loading_indicator.dart';
 
 class FeaturedBooksListViewBlocConsumer extends StatefulWidget {
   const FeaturedBooksListViewBlocConsumer({super.key});
@@ -43,6 +40,8 @@ class _FeaturedBooksListViewBlocConsumerState
             state is FeaturedBooksPaginationLoading ||
             state is FeaturedBooksPaginationFailure) {
           return FeaturedBooksListView(books: books);
+        } else if (state is FeaturedBooksLoading) {
+          return FeaturedBooksListViewLoadingIndicator();
         } else if (state is FeaturedBooksFailure) {
           return CustomErrorWidget(state.error);
         } else {

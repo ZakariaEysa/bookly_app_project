@@ -1,6 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CustomBookImageLoadingIndicator extends StatelessWidget {
   const CustomBookImageLoadingIndicator({super.key});
@@ -10,10 +9,17 @@ class CustomBookImageLoadingIndicator extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: AspectRatio(
-          aspectRatio: 2.6 / 4,
+        aspectRatio: 2.6 / 4,
+        child: Shimmer.fromColors(
+          loop: 900,
+          baseColor: Colors.grey[300]!,
+          direction: ShimmerDirection.ltr,
+          highlightColor: Colors.white,
           child: Container(
             color: Colors.grey[50],
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

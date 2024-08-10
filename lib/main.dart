@@ -14,7 +14,6 @@ import 'core/utils/app_router.dart';
 import 'core/utils/service_locator.dart';
 import 'core/utils/simple_bloc_observer.dart';
 
-//
 void main() async {
   setupServiceLocator();
   await Hive.initFlutter();
