@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/utils/functions/build_error_snack_bar.dart';
 import '../../../../../core/widgets/custom_error_widget.dart';
-import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../domain/entities/book_entity.dart';
 import '../../view_model/newest_books_cubit/newest_books_cubit.dart';
 import 'best_seller_list_view.dart';
@@ -38,16 +37,14 @@ class _BestSellerListViewBlocConsumerState
       builder: (context, state) {
         if (state is NewestBooksSuccess ||
             state is NewestBooksPaginationLoading ||
-            state is NewestBooksPaginationFailure) {
+            state is NewestBooksPaginationFailure && books.isNotEmpty) {
           return BestSellerListView(
             books: books,
           );
         } else if (state is NewestBooksFailure) {
           return CustomErrorWidget(state.error);
-        } else if (state is NewestBooksLoading) {
-          return const NewestBooksListViewLoadingIndicator();
         } else {
-          return const CustomLoadingIndicator();
+          return const NewestBooksListViewLoadingIndicator();
         }
       },
     );

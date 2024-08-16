@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/utils/functions/build_error_snack_bar.dart';
 import '../../../../../core/widgets/custom_error_widget.dart';
-import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../../domain/entities/book_entity.dart';
 import '../../view_model/featured_books_cubit/featured_books_cubit.dart';
 import 'featured_books_list_view.dart';
@@ -38,14 +37,12 @@ class _FeaturedBooksListViewBlocConsumerState
       builder: (context, state) {
         if (state is FeaturedBooksSuccess ||
             state is FeaturedBooksPaginationLoading ||
-            state is FeaturedBooksPaginationFailure) {
+            state is FeaturedBooksPaginationFailure && books.isNotEmpty) {
           return FeaturedBooksListView(books: books);
-        } else if (state is FeaturedBooksLoading) {
-          return const FeaturedBooksListViewLoadingIndicator();
         } else if (state is FeaturedBooksFailure) {
           return CustomErrorWidget(state.error);
         } else {
-          return const CustomLoadingIndicator();
+          return const FeaturedBooksListViewLoadingIndicator();
         }
       },
     );

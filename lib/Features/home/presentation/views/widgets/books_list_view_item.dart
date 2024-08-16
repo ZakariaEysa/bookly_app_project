@@ -23,7 +23,7 @@ class BooksListViewItem extends StatelessWidget {
                   child: CupertinoActivityIndicator(),
                 ),
               )
-            : Icon(Icons.error),
+            : const Icon(Icons.error),
       ),
     );
   }

@@ -34,12 +34,6 @@ abstract class AppRouter {
             )),
       ),
       GoRoute(
-        path: '/bookDetailsView',
-        builder: (context, state) => BookDetailsView(
-          bookModel: state.extra as BookEntity,
-        ),
-      ),
-      GoRoute(
         path: '/searchView',
         builder: (context, state) => const SearchView(),
       ),
