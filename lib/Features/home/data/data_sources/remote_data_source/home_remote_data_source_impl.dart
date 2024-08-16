@@ -50,7 +50,10 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
     List<BookModel> books = [];
     if (data.containsKey('items')) {
       for (var book in data['items']) {
-        books.add(BookModel.fromJson(book));
+        var item = BookModel.fromJson(book);
+        if (item.image != '') {
+          books.add(BookModel.fromJson(book));
+        }
       }
     }
     return books;

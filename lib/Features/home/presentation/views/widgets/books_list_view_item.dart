@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'custom_book_image_loading_indicator.dart';
 
 class BooksListViewItem extends StatelessWidget {
   const BooksListViewItem({super.key, required this.imageUrl});
@@ -17,11 +18,12 @@ class BooksListViewItem extends StatelessWidget {
             ? CachedNetworkImage(
                 imageUrl: imageUrl,
                 fit: BoxFit.fill,
-                // ignore: prefer_const_constructors
-                errorWidget: (context, url, error) => Icon(Icons.error),
-                placeholder: (context, url) => const Center(
-                  child: CupertinoActivityIndicator(),
-                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                // placeholder: (context, url) => const Center(
+                //   child: CupertinoActivityIndicator(),
+                // ),
+                placeholder: (context, url) =>
+                    const CustomBookImageLoadingIndicator(),
               )
             : const Icon(Icons.error),
       ),

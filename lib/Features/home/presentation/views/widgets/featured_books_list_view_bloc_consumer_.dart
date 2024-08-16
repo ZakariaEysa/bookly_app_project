@@ -57,7 +57,7 @@ class _FeaturedBooksListViewBlocConsumerState
               return const FeaturedBooksListViewLoadingIndicator();
             }
           },
-          child: SizedBox.shrink(),
+          child: const SizedBox.shrink(),
         );
       },
     );
