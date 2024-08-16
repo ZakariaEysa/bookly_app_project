@@ -2,9 +2,12 @@ import 'package:bookly_app_project/Features/home/presentation/views/widgets/simi
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/styles.dart';
+import '../../../domain/entities/book_entity.dart';
 
 class SimilarBooksSection extends StatelessWidget {
-  const SimilarBooksSection({super.key});
+  const SimilarBooksSection({super.key, required this.bookModel});
+
+  final BookEntity bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,9 @@ class SimilarBooksSection extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        const SimilarBooksListViewBlocConsumer(),
+        SimilarBooksListViewBlocConsumer(
+          bookModel: bookModel,
+        ),
       ],
     );
   }
