@@ -1,5 +1,6 @@
 import '../../../../../constants.dart';
 import '../../../../../core/utils/api_service.dart';
+import '../../../../../core/utils/functions/get_books_list.dart';
 import '../../../../../core/utils/functions/save_box_data.dart';
 import '../../../domain/entities/book_entity.dart';
 import '../../models/book_model/book_model.dart';
@@ -43,19 +44,6 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         endPoint:
             'volumes?Sorting=relevance&Filtering=free-ebooks&q=subject:$category&startIndex=$index');
     List<BookModel> books = getBooksList(data);
-    return books;
-  }
-
-  List<BookModel> getBooksList(Map<String, dynamic> data) {
-    List<BookModel> books = [];
-    if (data.containsKey('items')) {
-      for (var book in data['items']) {
-        var item = BookModel.fromJson(book);
-        if (item.image != '') {
-          books.add(BookModel.fromJson(book));
-        }
-      }
-    }
     return books;
   }
 }
