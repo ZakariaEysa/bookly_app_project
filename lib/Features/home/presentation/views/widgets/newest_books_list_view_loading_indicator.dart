@@ -7,15 +7,17 @@ class NewestBooksListViewLoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        padding: EdgeInsets.zero,
-        itemCount: 10,
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return const Padding(
-              padding: EdgeInsetsDirectional.symmetric(vertical: 8),
-              child: CustomNewestBooksItemLoadingIndicator());
-        });
+    return Expanded(
+      child: ListView.builder(
+          padding: EdgeInsets.zero,
+          itemCount: 10,
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            return const Padding(
+                padding: EdgeInsetsDirectional.symmetric(vertical: 8),
+                child: CustomNewestBooksItemLoadingIndicator());
+          }),
+    );
   }
 }

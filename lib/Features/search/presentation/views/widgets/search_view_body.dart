@@ -29,9 +29,13 @@ class SearchViewBody extends StatelessWidget {
             ),
           ),
           const SliverFillRemaining(
-            child: SearchedListBlocConsumer(),
+            child: Column(
+              children: [
+                SearchedListBlocConsumer(),
+              ],
+            ),
           )
-          //    const SliverFillRemaining(child: SearchResultListView()),
+          //   const SliverFillRemaining(child: SearchedListBlocConsumer()),
         ],
       ),
     );

@@ -48,19 +48,21 @@ class _SearchResultListViewState extends State<SearchResultListView> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        controller: _scrollController,
-        padding: EdgeInsets.zero,
-        itemCount: widget.books.length,
-        // physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsetsDirectional.symmetric(vertical: 8),
-            child: BookListViewItem(
-              bookModel: widget.books[index],
-            ),
-          );
-        });
+    return Expanded(
+      child: ListView.builder(
+          controller: _scrollController,
+          padding: EdgeInsets.zero,
+          itemCount: widget.books.length,
+          physics: const BouncingScrollPhysics(),
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsetsDirectional.symmetric(vertical: 8),
+              child: BookListViewItem(
+                bookModel: widget.books[index],
+              ),
+            );
+          }),
+    );
   }
 }

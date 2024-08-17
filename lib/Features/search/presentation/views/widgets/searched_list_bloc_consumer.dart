@@ -1,4 +1,3 @@
-import 'package:bookly_app_project/Features/home/presentation/views/widgets/best_seller_list_view.dart';
 import 'package:bookly_app_project/Features/search/presentation/view_models/search_cubit/search_cubit.dart';
 import 'package:bookly_app_project/Features/search/presentation/views/widgets/search_result_list_view.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +18,22 @@ class SearchedListBlocConsumer extends StatefulWidget {
       _SearchedListBlocConsumerState();
 }
 
+void setQuery(String current) {
+  _SearchedListBlocConsumerState.previousQuery =
+      _SearchedListBlocConsumerState.currentQuery;
+  _SearchedListBlocConsumerState.currentQuery = current;
+
+  if (_SearchedListBlocConsumerState.previousQuery == '') {
+    _SearchedListBlocConsumerState.previousQuery = current;
+  }
+}
+
 class _SearchedListBlocConsumerState extends State<SearchedListBlocConsumer> {
   List<BookEntity> books = [];
   int count = 0;
+
+  static String currentQuery = '';
+  static String previousQuery = '';
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +47,6 @@ class _SearchedListBlocConsumerState extends State<SearchedListBlocConsumer> {
           final bool connected = connectivity[0] == ConnectivityResult.wifi;
 
           if (connected || books.isNotEmpty) {
-            // if (books.isEmpty && count == 0) {
-            //   BlocProvider.of<SearchCubit>(context).fetchSearchedBooks(
-            //       userQuery: books[0].category, pageNumber: count);
-            //   count++;
-            // }
-
             return _buildStateWidget(state);
           } else {
             return const NewestBooksListViewLoadingIndicator();
@@ -50,6 +56,14 @@ class _SearchedListBlocConsumerState extends State<SearchedListBlocConsumer> {
       );
     }, listener: (context, state) {
       if (state is SearchBooksSuccess) {
+        if (state.books.isNotEmpty) {
+          if (currentQuery.toString().toLowerCase() ==
+              previousQuery.toLowerCase().toLowerCase()) {
+          } else {
+            books.clear();
+            previousQuery = currentQuery;
+          }
+        }
         books.addAll(state.books);
       }
       if ((state is SearchBooksPaginationFailure)) {
@@ -64,7 +78,6 @@ class _SearchedListBlocConsumerState extends State<SearchedListBlocConsumer> {
     if (state is SearchBooksSuccess ||
         state is SearchBooksPaginationLoading ||
         state is SearchBooksPaginationFailure && books.isNotEmpty) {
-      print(books.length);
       return SearchResultListView(books: books);
     } else if (state is SearchBooksFailure) {
       return CustomErrorWidget(state.error);

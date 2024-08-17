@@ -42,7 +42,7 @@ abstract class AppRouter {
             create: (context) => SearchCubit(
                 FetchSearchedBooksUseCase(getIt.get<SearchRepoImpl>()))
               ..fetchSearchedBooksUseCase.call(0, "art"),
-            child: SearchView()),
+            child: const SearchView()),
       ),
     ],
   );
