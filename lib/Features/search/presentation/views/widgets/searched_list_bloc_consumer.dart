@@ -1,5 +1,6 @@
 import 'package:bookly_app_project/Features/home/presentation/views/widgets/best_seller_list_view.dart';
 import 'package:bookly_app_project/Features/search/presentation/view_models/search_cubit/search_cubit.dart';
+import 'package:bookly_app_project/Features/search/presentation/views/widgets/search_result_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
@@ -34,11 +35,11 @@ class _SearchedListBlocConsumerState extends State<SearchedListBlocConsumer> {
           final bool connected = connectivity[0] == ConnectivityResult.wifi;
 
           if (connected || books.isNotEmpty) {
-            if (books.isEmpty && count == 0) {
-              BlocProvider.of<SearchCubit>(context).fetchSearchedBooks(
-                  userQuery: books[0].category, pageNumber: count);
-              count++;
-            }
+            // if (books.isEmpty && count == 0) {
+            //   BlocProvider.of<SearchCubit>(context).fetchSearchedBooks(
+            //       userQuery: books[0].category, pageNumber: count);
+            //   count++;
+            // }
 
             return _buildStateWidget(state);
           } else {
@@ -63,7 +64,8 @@ class _SearchedListBlocConsumerState extends State<SearchedListBlocConsumer> {
     if (state is SearchBooksSuccess ||
         state is SearchBooksPaginationLoading ||
         state is SearchBooksPaginationFailure && books.isNotEmpty) {
-      return BestSellerListView(books: books);
+      print(books.length);
+      return SearchResultListView(books: books);
     } else if (state is SearchBooksFailure) {
       return CustomErrorWidget(state.error);
     } else {
