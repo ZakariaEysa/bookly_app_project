@@ -18,6 +18,11 @@ class SearchedListBlocConsumer extends StatefulWidget {
       _SearchedListBlocConsumerState();
 }
 
+bool matchQuery() {
+  return _SearchedListBlocConsumerState.currentQuery.toString().toLowerCase() ==
+      _SearchedListBlocConsumerState.previousQuery.toLowerCase().toLowerCase();
+}
+
 void setQuery(String current) {
   _SearchedListBlocConsumerState.previousQuery =
       _SearchedListBlocConsumerState.currentQuery;
@@ -57,11 +62,11 @@ class _SearchedListBlocConsumerState extends State<SearchedListBlocConsumer> {
     }, listener: (context, state) {
       if (state is SearchBooksSuccess) {
         if (state.books.isNotEmpty) {
-          if (currentQuery.toString().toLowerCase() ==
-              previousQuery.toLowerCase().toLowerCase()) {
+          if (matchQuery()) {
           } else {
             books.clear();
             previousQuery = currentQuery;
+            resetController();
           }
         }
         books.addAll(state.books);

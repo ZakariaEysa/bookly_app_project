@@ -14,8 +14,18 @@ class SearchResultListView extends StatefulWidget {
   State<SearchResultListView> createState() => _SearchResultListViewState();
 }
 
+void resetController() {
+  _SearchResultListViewState().setController();
+}
+
 class _SearchResultListViewState extends State<SearchResultListView> {
+  void setController() {
+    nextPage = 1;
+    // _scrollController.jumpTo(0);
+  }
+
   late ScrollController _scrollController;
+
   var nextPage = 1;
   bool isLoading = false;
 
