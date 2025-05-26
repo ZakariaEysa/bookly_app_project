@@ -5,14 +5,28 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../view_models/search_cubit/search_cubit.dart';
 
 class CustomSearchTextField extends StatefulWidget {
-  const CustomSearchTextField({super.key});
+  const CustomSearchTextField({super.key, this.initialQuery});
+
+  final String? initialQuery;
 
   @override
   State<CustomSearchTextField> createState() => _CustomSearchTextFieldState();
 }
 
 class _CustomSearchTextFieldState extends State<CustomSearchTextField> {
-  final TextEditingController searchController = TextEditingController();
+  late final TextEditingController searchController;
+
+  @override
+  void initState() {
+    super.initState();
+    searchController = TextEditingController(text: widget.initialQuery ?? '');
+    if ((widget.initialQuery ?? '').isNotEmpty) {
+      setQuery(widget.initialQuery!);
+      BlocProvider.of<SearchCubit>(context)
+          .fetchSearchedBooks(pageNumber: 0, userQuery: widget.initialQuery!);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -46,7 +60,10 @@ class _CustomSearchTextFieldState extends State<CustomSearchTextField> {
     );
   }
 
-  OutlineInputBorder buildOutlineInputBorder() {
+  
+}
+
+OutlineInputBorder buildOutlineInputBorder() {
     return const OutlineInputBorder(
       borderRadius: BorderRadius.all(
         Radius.circular(12),
@@ -56,4 +73,3 @@ class _CustomSearchTextFieldState extends State<CustomSearchTextField> {
       ),
     );
   }
-}

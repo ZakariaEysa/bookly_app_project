@@ -18,7 +18,7 @@ class HomeViewBody extends StatelessWidget {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               child: CustomHomeViewAppBar(),
             ),
             const FeaturedBooksListViewBlocConsumer(),

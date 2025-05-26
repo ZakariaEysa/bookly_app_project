@@ -40,9 +40,8 @@ abstract class AppRouter {
         path: '/searchView',
         builder: (context, state) => BlocProvider(
             create: (context) => SearchCubit(
-                FetchSearchedBooksUseCase(getIt.get<SearchRepoImpl>()))
-              ..fetchSearchedBooksUseCase.call(0, "art"),
-            child: const SearchView()),
+                FetchSearchedBooksUseCase(getIt.get<SearchRepoImpl>())),
+            child: SearchView(query: state.uri.queryParameters['query'])),
       ),
     ],
   );

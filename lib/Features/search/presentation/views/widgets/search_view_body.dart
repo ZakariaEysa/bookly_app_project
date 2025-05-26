@@ -6,7 +6,9 @@ import '../../../../../core/utils/styles.dart';
 import 'custom_search_text_field.dart';
 
 class SearchViewBody extends StatelessWidget {
-  const SearchViewBody({super.key});
+  const SearchViewBody({super.key, this.initialQuery});
+
+  final String? initialQuery;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,8 @@ class SearchViewBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: CustomScrollView(
         slivers: [
-          const SliverToBoxAdapter(child: CustomSearchTextField()),
+          SliverToBoxAdapter(
+              child: CustomSearchTextField(initialQuery: initialQuery)),
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
