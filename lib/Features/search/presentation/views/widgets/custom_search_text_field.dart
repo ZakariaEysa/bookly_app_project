@@ -2,7 +2,6 @@ import 'package:BookNest/Features/search/presentation/views/widgets/searched_lis
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../view_models/search_cubit/search_cubit.dart';
 
 class CustomSearchTextField extends StatefulWidget {

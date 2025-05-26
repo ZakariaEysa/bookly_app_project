@@ -16,7 +16,7 @@ class CustomHomeViewAppBar extends StatelessWidget {
         children: [
           Image.asset(
             AssetsData.logo,
-            height: 18,
+            width: 150,
           ),
           IconButton(
               onPressed: () {
