@@ -1,4 +1,4 @@
-import 'package:bookly_app_project/Features/home/domain/entities/book_entity.dart';
+import 'package:BookNest/Features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
 
 import 'books_details_section.dart';

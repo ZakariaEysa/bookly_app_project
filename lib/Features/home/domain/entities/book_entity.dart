@@ -18,6 +18,10 @@ class BookEntity {
   final String previewLink;
   @HiveField(6)
   final String category;
+  @HiveField(7)
+  final bool isAvailable;
+  @HiveField(8)
+  final String acsTokenLink;
 
   const BookEntity({
     required this.image,
@@ -27,5 +31,7 @@ class BookEntity {
     required this.previewLink,
     required this.bookId,
     required this.category,
+    required this.isAvailable,
+    required this.acsTokenLink,
   });
 }

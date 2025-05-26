@@ -1,5 +1,5 @@
-import 'package:bookly_app_project/Features/search/data/data_sources/remote_data_source/search_remote_data_source_impl.dart';
-import 'package:bookly_app_project/Features/search/data/repos/search_repo_impl.dart';
+import 'package:BookNest/Features/search/data/data_sources/remote_data_source/search_remote_data_source_impl.dart';
+import 'package:BookNest/Features/search/data/repos/search_repo_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 

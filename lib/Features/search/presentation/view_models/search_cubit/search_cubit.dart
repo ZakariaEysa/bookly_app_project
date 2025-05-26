@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:bookly_app_project/Features/search/domain/use_cases/fetch_searched_books_use_case.dart';
+import 'package:BookNest/Features/search/domain/use_cases/fetch_searched_books_use_case.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../home/domain/entities/book_entity.dart';

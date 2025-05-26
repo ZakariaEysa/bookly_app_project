@@ -1,4 +1,4 @@
-import 'package:bookly_app_project/Features/home/presentation/views/widgets/similar_books_list_view.dart';
+import 'package:BookNest/Features/home/presentation/views/widgets/similar_books_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';

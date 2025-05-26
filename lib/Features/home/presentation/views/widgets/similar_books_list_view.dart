@@ -1,5 +1,5 @@
-import 'package:bookly_app_project/Features/home/presentation/view_model/related_books_cubit/related_books_cubit.dart';
-import 'package:bookly_app_project/core/utils/assets.dart';
+import 'package:BookNest/Features/home/presentation/view_model/related_books_cubit/related_books_cubit.dart';
+import 'package:BookNest/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

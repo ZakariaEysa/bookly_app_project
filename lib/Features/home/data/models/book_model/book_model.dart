@@ -26,6 +26,12 @@ class BookModel extends BookEntity with EquatableMixin {
     this.accessInfo,
     this.searchInfo,
   }) : super(
+            acsTokenLink: accessInfo?.pdf?.acsTokenLink == null
+                ? ""
+                : accessInfo?.pdf?.acsTokenLink ?? '',
+            isAvailable: accessInfo?.pdf?.isAvailable == null
+                ? false
+                : accessInfo?.pdf?.isAvailable ?? false,
             image: volumeInfo?.imageLinks?.thumbnail ?? '',
             authorName: volumeInfo?.authors?.first ?? '',
             title: volumeInfo?.title ?? '',

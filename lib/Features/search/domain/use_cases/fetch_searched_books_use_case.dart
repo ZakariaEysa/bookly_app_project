@@ -1,5 +1,5 @@
-import 'package:bookly_app_project/Features/search/domain/use_cases/search_use_case.dart';
-import 'package:bookly_app_project/core/errors/failure.dart';
+import 'package:BookNest/Features/search/domain/use_cases/search_use_case.dart';
+import 'package:BookNest/core/errors/failure.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../home/domain/entities/book_entity.dart';

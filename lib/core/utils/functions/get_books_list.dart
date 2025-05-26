@@ -5,6 +5,7 @@ List<BookModel> getBooksList(Map<String, dynamic> data) {
   if (data.containsKey('items')) {
     for (var book in data['items']) {
       var item = BookModel.fromJson(book);
+
       if (item.image != '') {
         books.add(BookModel.fromJson(book));
       }

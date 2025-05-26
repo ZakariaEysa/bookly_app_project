@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:bookly_app_project/Features/home/domain/use_cases/fetch_related_books_use_case.dart';
 import 'package:meta/meta.dart';
 
 import '../../../domain/entities/book_entity.dart';
+import '../../../domain/use_cases/fetch_related_books_use_case.dart';
 
 part 'related_books_state.dart';
 

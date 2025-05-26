@@ -1,4 +1,4 @@
-import 'package:bookly_app_project/Features/search/presentation/view_models/search_cubit/search_cubit.dart';
+import 'package:BookNest/Features/search/presentation/view_models/search_cubit/search_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

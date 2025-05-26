@@ -1,5 +1,5 @@
-import 'package:bookly_app_project/Features/search/presentation/view_models/search_cubit/search_cubit.dart';
-import 'package:bookly_app_project/Features/search/presentation/views/widgets/search_result_list_view.dart';
+import 'package:BookNest/Features/search/presentation/view_models/search_cubit/search_cubit.dart';
+import 'package:BookNest/Features/search/presentation/views/widgets/search_result_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';

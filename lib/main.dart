@@ -25,11 +25,11 @@ void main() async {
 
   Bloc.observer = SimpleBlocObserver();
 
-  runApp(const BooklyApp());
+  runApp(const BookNest());
 }
 
-class BooklyApp extends StatelessWidget {
-  const BooklyApp({super.key});
+class BookNest extends StatelessWidget {
+  const BookNest({super.key});
 
   @override
   Widget build(BuildContext context) {

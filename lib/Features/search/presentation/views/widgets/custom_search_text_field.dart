@@ -1,4 +1,4 @@
-import 'package:bookly_app_project/Features/search/presentation/views/widgets/searched_list_bloc_consumer.dart';
+import 'package:BookNest/Features/search/presentation/views/widgets/searched_list_bloc_consumer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,9 +13,11 @@ class CustomSearchTextField extends StatefulWidget {
 }
 
 class _CustomSearchTextFieldState extends State<CustomSearchTextField> {
+  final TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: searchController,
       onSubmitted: (value) {
         setQuery(value);
 
@@ -27,7 +29,12 @@ class _CustomSearchTextFieldState extends State<CustomSearchTextField> {
         focusedBorder: buildOutlineInputBorder(),
         hintText: 'Search',
         suffixIcon: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            setQuery(searchController.text);
+
+            BlocProvider.of<SearchCubit>(context).fetchSearchedBooks(
+                pageNumber: 0, userQuery: searchController.text);
+          },
           icon: const Opacity(
             opacity: .8,
             child: Icon(

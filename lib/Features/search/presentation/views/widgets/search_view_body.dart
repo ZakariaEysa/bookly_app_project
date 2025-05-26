@@ -1,4 +1,4 @@
-import 'package:bookly_app_project/Features/search/presentation/views/widgets/searched_list_bloc_consumer.dart';
+import 'package:BookNest/Features/search/presentation/views/widgets/searched_list_bloc_consumer.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../constants.dart';
