@@ -29,47 +29,48 @@ class _CustomSearchTextFieldState extends State<CustomSearchTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: searchController,
-      onSubmitted: (value) {
-        setQuery(value);
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 15),
+      child: TextField(
+        controller: searchController,
+        onSubmitted: (value) {
+          setQuery(value);
 
-        BlocProvider.of<SearchCubit>(context)
-            .fetchSearchedBooks(pageNumber: 0, userQuery: value);
-      },
-      decoration: InputDecoration(
-        enabledBorder: buildOutlineInputBorder(),
-        focusedBorder: buildOutlineInputBorder(),
-        hintText: 'Search',
-        suffixIcon: IconButton(
-          onPressed: () {
-            setQuery(searchController.text);
+          BlocProvider.of<SearchCubit>(context)
+              .fetchSearchedBooks(pageNumber: 0, userQuery: value);
+        },
+        decoration: InputDecoration(
+          enabledBorder: buildOutlineInputBorder(),
+          focusedBorder: buildOutlineInputBorder(),
+          hintText: 'Search',
+          suffixIcon: IconButton(
+            onPressed: () {
+              setQuery(searchController.text);
 
-            BlocProvider.of<SearchCubit>(context).fetchSearchedBooks(
-                pageNumber: 0, userQuery: searchController.text);
-          },
-          icon: const Opacity(
-            opacity: .8,
-            child: Icon(
-              FontAwesomeIcons.magnifyingGlass,
-              size: 22,
+              BlocProvider.of<SearchCubit>(context).fetchSearchedBooks(
+                  pageNumber: 0, userQuery: searchController.text);
+            },
+            icon: const Opacity(
+              opacity: .8,
+              child: Icon(
+                FontAwesomeIcons.magnifyingGlass,
+                size: 22,
+              ),
             ),
           ),
         ),
       ),
     );
   }
-
-  
 }
 
 OutlineInputBorder buildOutlineInputBorder() {
-    return const OutlineInputBorder(
-      borderRadius: BorderRadius.all(
-        Radius.circular(12),
-      ),
-      borderSide: BorderSide(
-        color: Colors.white,
-      ),
-    );
-  }
+  return const OutlineInputBorder(
+    borderRadius: BorderRadius.all(
+      Radius.circular(12),
+    ),
+    borderSide: BorderSide(
+      color: Colors.white,
+    ),
+  );
+}

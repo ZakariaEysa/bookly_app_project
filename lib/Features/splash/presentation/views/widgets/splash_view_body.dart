@@ -37,8 +37,11 @@ class _SplashViewBodyState extends State<SplashViewBody>
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Image.asset(
-          AssetsData.logo,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Image.asset(
+            AssetsData.logo,
+          ),
         ),
         const SizedBox(
           height: 13,
