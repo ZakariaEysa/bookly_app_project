@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Features/home/data/repos/home_repo_impl.dart';
 import 'Features/home/domain/entities/book_entity.dart';
@@ -33,27 +34,34 @@ class BookNest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => FeaturedBooksCubit(
-              FetchFeaturedBooksUseCase(getIt.get<HomeRepoImpl>()))
-            ..fetchFeaturedBooks(),
-        ),
-        BlocProvider(
-          create: (context) => NewestBooksCubit(
-              FetchNewestBooksUseCase(getIt.get<HomeRepoImpl>()))
-            ..fetchNewestBooks(),
-        ),
-      ],
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark().copyWith(
-            scaffoldBackgroundColor: kPrimaryColor,
-            textTheme:
-                GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme)),
-        routerConfig: AppRouter.router,
-      ),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812), // iPhone X design size
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => FeaturedBooksCubit(
+                  FetchFeaturedBooksUseCase(getIt.get<HomeRepoImpl>()))
+                ..fetchFeaturedBooks(),
+            ),
+            BlocProvider(
+              create: (context) => NewestBooksCubit(
+                  FetchNewestBooksUseCase(getIt.get<HomeRepoImpl>()))
+                ..fetchNewestBooks(),
+            ),
+          ],
+          child: MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData.dark().copyWith(
+                scaffoldBackgroundColor: kPrimaryColor,
+                textTheme: GoogleFonts.montserratTextTheme(
+                    ThemeData.dark().textTheme)),
+            routerConfig: AppRouter.router,
+          ),
+        );
+      },
     );
   }
 }

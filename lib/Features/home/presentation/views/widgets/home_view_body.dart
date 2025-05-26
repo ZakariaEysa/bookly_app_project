@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/utils/styles.dart';
@@ -17,26 +18,34 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-              child: CustomHomeViewAppBar(),
-            ),
-            const FeaturedBooksListViewBlocConsumer(),
-            const SizedBox(height: 32),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
+              child: const CustomHomeViewAppBar(),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30.w),
+              child: Text(
+                "Popular Books",
+                style: Styles.textStyle18.copyWith(fontFamily: kGtSectraFine),
+              ),
+            ),
+            SizedBox(height: 20.h),
+            const FeaturedBooksListViewBlocConsumer(),
+            SizedBox(height: 32.h),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30.w),
               child: Text(
                 "Newest Books",
                 style: Styles.textStyle18.copyWith(fontFamily: kGtSectraFine),
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20.h),
           ]),
         ),
-        const SliverFillRemaining(
+        SliverFillRemaining(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-            child: Column(
+            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+            child: const Column(
               children: [
                 BestSellerListViewBlocConsumer(),
               ],

@@ -1,6 +1,7 @@
 import 'package:BookNest/Features/search/presentation/view_models/search_cubit/search_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../home/domain/entities/book_entity.dart';
 import '../../../../home/presentation/views/widgets/best_seller_list_view_item.dart';
@@ -21,7 +22,6 @@ void resetController() {
 class _SearchResultListViewState extends State<SearchResultListView> {
   void setController() {
     nextPage = 1;
-    // _scrollController.jumpTo(0);
   }
 
   late ScrollController _scrollController;
@@ -67,7 +67,7 @@ class _SearchResultListViewState extends State<SearchResultListView> {
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsetsDirectional.symmetric(vertical: 8),
+              padding: EdgeInsetsDirectional.symmetric(vertical: 8.h),
               child: BookListViewItem(
                 bookModel: widget.books[index],
               ),

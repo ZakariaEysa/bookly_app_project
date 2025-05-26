@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'custom_book_image_loading_indicator.dart';
 
@@ -11,7 +12,7 @@ class BooksListViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(16.r),
       child: AspectRatio(
         aspectRatio: 2.6 / 4,
         child: imageUrl.isNotEmpty

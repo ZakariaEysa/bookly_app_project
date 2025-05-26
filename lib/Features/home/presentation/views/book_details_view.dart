@@ -34,39 +34,40 @@ class _BookDetailsViewState extends State<BookDetailsView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          backgroundColor: kPrimaryColor,
-          leading: IconButton(
-            onPressed: () {
-              GoRouter.of(context).pop();
-            },
-            icon: const Icon(Icons.close),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () async {
-                if (widget.bookModel.isAvailable &&
-                    widget.bookModel.acsTokenLink != "") {
-                  final url = widget.bookModel.acsTokenLink;
-
-                  await downloadPdfToDownloadsFolder(context,
-                      widget.bookModel.acsTokenLink, widget.bookModel.title);
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("Book is not available"),
-                    ),
-                  );
-                }
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+            backgroundColor: kPrimaryColor,
+            leading: IconButton(
+              onPressed: () {
+                GoRouter.of(context).pop();
               },
-              icon: const Icon(Icons.download_sharp),
+              icon: const Icon(Icons.close),
             ),
-          ]),
-      body: SafeArea(
-          child: BookDetailsViewBody(
-        bookModel: widget.bookModel,
-      )),
+            actions: [
+              IconButton(
+                onPressed: () async {
+                  if (widget.bookModel.isAvailable &&
+                      widget.bookModel.acsTokenLink != "") {
+                    final url = widget.bookModel.acsTokenLink;
+
+                    await downloadPdfToDownloadsFolder(context,
+                        widget.bookModel.acsTokenLink, widget.bookModel.title);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Book is not available"),
+                      ),
+                    );
+                  }
+                },
+                icon: const Icon(Icons.download_sharp),
+              ),
+            ]),
+        body: BookDetailsViewBody(
+          bookModel: widget.bookModel,
+        ),
+      ),
     );
   }
 }
@@ -78,7 +79,7 @@ Future<void> downloadPdfToDownloadsFolder(
 
     if (!isGranted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('❌ لم يتم منح صلاحية التخزين')),
+        const SnackBar(content: const Text('❌ لم يتم منح صلاحية التخزين')),
       );
       return;
     }
@@ -136,7 +137,8 @@ Future<bool> requestStoragePermission(BuildContext context) async {
   if (status.isPermanentlyDenied) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('❌ تم رفض الصلاحية نهائيًا، يرجى تفعيلها من الإعدادات'),
+        content:
+            const Text('❌ تم رفض الصلاحية نهائيًا، يرجى تفعيلها من الإعدادات'),
         action: SnackBarAction(
           label: 'الإعدادات',
           onPressed: () {

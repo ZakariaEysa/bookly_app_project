@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'custom_book_image_loading_indicator.dart';
@@ -9,21 +10,21 @@ class CustomNewestBooksItemLoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 125,
+      height: 125.h,
       child: Row(
         children: [
           const CustomBookImageLoadingIndicator(),
-          const SizedBox(width: 30),
+          SizedBox(width: 30.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildShimmerLine(context, height: 16),
-                const SizedBox(height: 8),
-                _buildShimmerLine(context, height: 14, widthFactor: 0.7),
-                const SizedBox(height: 8),
-                _buildShimmerLine(context, height: 14, widthFactor: 0.5),
+                _buildShimmerLine(context, height: 16.h),
+                SizedBox(height: 8.h),
+                _buildShimmerLine(context, height: 14.h, widthFactor: 0.7),
+                SizedBox(height: 8.h),
+                _buildShimmerLine(context, height: 14.h, widthFactor: 0.5),
               ],
             ),
           ),

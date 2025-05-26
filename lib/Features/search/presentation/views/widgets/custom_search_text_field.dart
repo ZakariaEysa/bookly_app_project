@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../view_models/search_cubit/search_cubit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomSearchTextField extends StatefulWidget {
   const CustomSearchTextField({super.key, this.initialQuery});
@@ -30,7 +32,7 @@ class _CustomSearchTextFieldState extends State<CustomSearchTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15),
+      padding: EdgeInsets.symmetric(vertical: 15.h),
       child: TextField(
         controller: searchController,
         onSubmitted: (value) {
@@ -50,11 +52,11 @@ class _CustomSearchTextFieldState extends State<CustomSearchTextField> {
               BlocProvider.of<SearchCubit>(context).fetchSearchedBooks(
                   pageNumber: 0, userQuery: searchController.text);
             },
-            icon: const Opacity(
+            icon: Opacity(
               opacity: .8,
               child: Icon(
                 FontAwesomeIcons.magnifyingGlass,
-                size: 22,
+                size: 22.sp,
               ),
             ),
           ),
@@ -65,11 +67,11 @@ class _CustomSearchTextFieldState extends State<CustomSearchTextField> {
 }
 
 OutlineInputBorder buildOutlineInputBorder() {
-  return const OutlineInputBorder(
+  return OutlineInputBorder(
     borderRadius: BorderRadius.all(
-      Radius.circular(12),
+      Radius.circular(12.r),
     ),
-    borderSide: BorderSide(
+    borderSide: const BorderSide(
       color: Colors.white,
     ),
   );

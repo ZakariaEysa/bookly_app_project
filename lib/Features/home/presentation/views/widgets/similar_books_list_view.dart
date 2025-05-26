@@ -2,6 +2,7 @@ import 'package:BookNest/Features/home/presentation/view_model/related_books_cub
 import 'package:BookNest/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../domain/entities/book_entity.dart';
@@ -51,14 +52,14 @@ class _SimilarBooksListViewState extends State<SimilarBooksListView> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.sizeOf(context).height * .17,
+      height: MediaQuery.sizeOf(context).height * .22,
       child: Padding(
-        padding: const EdgeInsetsDirectional.only(start: 18),
+        padding: EdgeInsetsDirectional.only(start: 5.w),
         child: ListView.builder(
           controller: _scrollController,
           physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) => Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0.w),
             child: GestureDetector(
               onTap: () {
                 GoRouter.of(context).pushReplacement('/bookDetailsView',

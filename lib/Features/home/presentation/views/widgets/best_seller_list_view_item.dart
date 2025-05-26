@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../constants.dart';
@@ -23,13 +24,13 @@ class BookListViewItem extends StatelessWidget {
         }
       },
       child: SizedBox(
-        height: 125,
+        height: 125.h,
         child: Row(
           children: [
             BooksListViewItem(
                 imageUrl: bookModel.image ?? AssetsData.testImage),
-            const SizedBox(
-              width: 30,
+            SizedBox(
+              width: 30.w,
             ),
             Expanded(
               child: Column(
@@ -46,16 +47,16 @@ class BookListViewItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 3,
+                  SizedBox(
+                    height: 3.h,
                   ),
                   Text(
                     bookModel.authorName ?? 'Unknown',
                     style: Styles.textStyle14,
                     maxLines: 1,
                   ),
-                  const SizedBox(
-                    height: 3,
+                  SizedBox(
+                    height: 3.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'custom_newest_books_item_loading_indicator.dart';
 
@@ -14,9 +15,9 @@ class NewestBooksListViewLoadingIndicator extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, index) {
-            return const Padding(
-                padding: EdgeInsetsDirectional.symmetric(vertical: 8),
-                child: CustomNewestBooksItemLoadingIndicator());
+            return Padding(
+                padding: EdgeInsetsDirectional.symmetric(vertical: 8.h),
+                child: const CustomNewestBooksItemLoadingIndicator());
           }),
     );
   }

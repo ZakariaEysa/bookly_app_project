@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/assets.dart';
@@ -8,7 +9,10 @@ import '../../view_model/featured_books_cubit/featured_books_cubit.dart';
 import 'books_list_view_item.dart';
 
 class FeaturedBooksListView extends StatefulWidget {
-  const FeaturedBooksListView({super.key, required this.books});
+  const FeaturedBooksListView({
+    super.key,
+    required this.books,
+  });
 
   final List<BookEntity> books;
 
@@ -22,9 +26,9 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
   bool isLoading = false;
 
   @override
-  initState() {
-    _scrollController = ScrollController();
+  void initState() {
     super.initState();
+    _scrollController = ScrollController();
     _scrollController.addListener(() async {
       double maxScroll = _scrollController.position.maxScrollExtent;
       double currentScroll = _scrollController.position.pixels;
@@ -43,8 +47,8 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
 
   @override
   void dispose() {
-    super.dispose();
     _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -52,12 +56,12 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
     return SizedBox(
       height: MediaQuery.sizeOf(context).height * .3,
       child: Padding(
-        padding: const EdgeInsetsDirectional.only(start: 18),
+        padding: EdgeInsetsDirectional.only(start: 18.w),
         child: ListView.builder(
           controller: _scrollController,
           physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) => Padding(
-            padding: const EdgeInsetsDirectional.only(end: 12),
+            padding: EdgeInsetsDirectional.only(end: 12.w),
             child: GestureDetector(
               onTap: () {
                 if (widget.books[index].image != null) {

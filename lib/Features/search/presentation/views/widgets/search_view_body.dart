@@ -1,5 +1,6 @@
 import 'package:BookNest/Features/search/presentation/views/widgets/searched_list_bloc_consumer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/utils/styles.dart';
@@ -13,7 +14,7 @@ class SearchViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+      padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -22,12 +23,12 @@ class SearchViewBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 16),
+                SizedBox(height: 16.h),
                 Text(
                   "Search Result",
                   style: Styles.textStyle18.copyWith(fontFamily: kGtSectraFine),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16.h),
               ],
             ),
           ),

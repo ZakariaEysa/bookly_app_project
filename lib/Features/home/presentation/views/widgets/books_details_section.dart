@@ -1,5 +1,7 @@
 import 'package:BookNest/Features/home/domain/entities/book_entity.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/styles.dart';
@@ -18,14 +20,28 @@ class BookDetailsSection extends StatelessWidget {
 
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: width * .2),
-          child: BooksListViewItem(
-            imageUrl: bookModel.image ?? AssetsData.testImage,
-          ),
+        Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: width * .2),
+              child: BooksListViewItem(
+                imageUrl: bookModel.image ?? AssetsData.testImage,
+              ),
+            ),
+            Positioned(
+                right: 20,
+                bottom: -10,
+                child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      size: 40.sp,
+                      Icons.favorite,
+                      color: Colors.red,
+                    ))),
+          ],
         ),
-        const SizedBox(
-          height: 43,
+        SizedBox(
+          height: 43.h,
         ),
         Text(
           textAlign: TextAlign.center,
@@ -33,8 +49,8 @@ class BookDetailsSection extends StatelessWidget {
           style: Styles.textStyle30.copyWith(fontWeight: FontWeight.bold),
           maxLines: 1,
         ),
-        const SizedBox(
-          height: 6,
+        SizedBox(
+          height: 6.h,
         ),
         Opacity(
           opacity: .7,
@@ -44,16 +60,16 @@ class BookDetailsSection extends StatelessWidget {
                 fontWeight: FontWeight.w500, fontStyle: FontStyle.italic),
           ),
         ),
-        const SizedBox(
-          height: 18,
+        SizedBox(
+          height: 18.h,
         ),
         const BookRating(
           count: 0,
           alignment: MainAxisAlignment.center,
           rating: '3.8',
         ),
-        const SizedBox(
-          height: 37,
+        SizedBox(
+          height: 37.h,
         ),
         BooksAction(
           bookModel: bookModel,

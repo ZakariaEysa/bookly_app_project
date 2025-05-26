@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../utils/styles.dart';
 
@@ -9,10 +10,13 @@ class CustomErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      textAlign: TextAlign.center,
-      message,
-      style: Styles.textStyle18,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      child: Text(
+        textAlign: TextAlign.center,
+        message,
+        style: Styles.textStyle18,
+      ),
     );
   }
 }

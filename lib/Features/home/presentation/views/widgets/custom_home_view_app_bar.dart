@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,7 +19,7 @@ class _CustomHomeViewAppBarState extends State<CustomHomeViewAppBar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(top: 40, bottom: 20),
+      padding: EdgeInsetsDirectional.only(top: 40.h, bottom: 20.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -27,7 +28,7 @@ class _CustomHomeViewAppBarState extends State<CustomHomeViewAppBar> {
           //   width: 150,
           // ),
           SizedBox(
-            width: 300,
+            width: 300.w,
             child: TextField(
               controller: searchController,
               onSubmitted: (value) {
@@ -38,7 +39,7 @@ class _CustomHomeViewAppBarState extends State<CustomHomeViewAppBar> {
               decoration: InputDecoration(
                 enabledBorder: buildOutlineInputBorder(),
                 focusedBorder: buildOutlineInputBorder(),
-                hintText: ' Search Here ...',
+                hintText: ' Search For Books ...',
                 suffixIcon: IconButton(
                   onPressed: () {
                     if (searchController.text.trim().isNotEmpty) {
@@ -46,11 +47,11 @@ class _CustomHomeViewAppBarState extends State<CustomHomeViewAppBar> {
                           .push('/searchView?query=${searchController.text}');
                     }
                   },
-                  icon: const Opacity(
+                  icon: Opacity(
                     opacity: .8,
                     child: Icon(
                       FontAwesomeIcons.magnifyingGlass,
-                      size: 22,
+                      size: 22.sp,
                     ),
                   ),
                 ),
@@ -59,9 +60,9 @@ class _CustomHomeViewAppBarState extends State<CustomHomeViewAppBar> {
             ),
           ),
 
-          const Icon(
+          Icon(
             FontAwesomeIcons.heart,
-            size: 22,
+            size: 22.sp,
           ),
         ],
       ),
