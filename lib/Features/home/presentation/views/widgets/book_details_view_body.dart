@@ -1,5 +1,6 @@
-import 'package:bookly_app_project/Features/home/data/models/book_model/book_model.dart';
+import 'package:BookNest/Features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'books_details_section.dart';
 import 'books_similar_section.dart';
@@ -7,12 +8,12 @@ import 'books_similar_section.dart';
 class BookDetailsViewBody extends StatelessWidget {
   const BookDetailsViewBody({super.key, required this.bookModel});
 
-  final BookModel bookModel;
+  final BookEntity bookModel;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
       child: CustomScrollView(
         slivers: [
           SliverFillRemaining(
@@ -23,14 +24,16 @@ class BookDetailsViewBody extends StatelessWidget {
                 BookDetailsSection(
                   bookModel: bookModel,
                 ),
-                const Expanded(
+                Expanded(
                   child: SizedBox(
-                    height: 40,
+                    height: 40.h,
                   ),
                 ),
-                const SimilarBooksSection(),
-                const SizedBox(
-                  height: 40,
+                SimilarBooksSection(
+                  bookModel: bookModel,
+                ),
+                SizedBox(
+                  height: 40.h,
                 ),
               ],
             ),

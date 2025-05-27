@@ -1,78 +1,88 @@
-import 'package:bookly_app_project/Features/home/data/models/book_model/book_model.dart';
-import 'package:bookly_app_project/core/errors/failure.dart';
-import 'package:bookly_app_project/core/utils/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-import 'home_repo.dart';
+import '../../../../core/errors/failure.dart';
+import '../../domain/entities/book_entity.dart';
+import '../../domain/repos/home_repo.dart';
+import '../data_sources/local_data_source/home_local_data_source.dart';
+import '../data_sources/remote_data_source/home_remote_data_source.dart';
 
 class HomeRepoImpl extends HomeRepo {
-  final ApiService apiService;
+  final HomeRemoteDataSource homeRemoteDataSource;
+  final HomeLocalDataSource homeLocalDataSource;
 
-  HomeRepoImpl(this.apiService);
+  HomeRepoImpl(
+      {required this.homeRemoteDataSource, required this.homeLocalDataSource});
 
   @override
-  Future<Either<Failure, List<BookModel>>> fetchNewestBooks() async {
+  @override
+  Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks(
+      {int pageNumber = 0}) async {
+    List<BookEntity> books;
     try {
-      var data = await apiService.get(
-          endPoint:
-              'volumes?Filtering=free-ebooks&Sorting=newest&q=subject:computer science');
-      List<BookModel> books = [];
-      for (var book in data['items']) {
-        try {
-          books.add(BookModel.fromJson(book));
-        } catch (e) {}
+      books = homeLocalDataSource.fetchFeaturedBooks(pageNumber: pageNumber);
+
+      if (books.isNotEmpty) {
+        return right(books);
       }
 
-      return right(books);
+      books =
+          await homeRemoteDataSource.fetchFeaturedBooks(pageNumber: pageNumber);
+
+      return Right(books);
     } catch (e) {
       if (e is DioException) {
-        return left(ServerFailure.fromDioError(e));
-      } else {
-        return left(ServerFailure(e.toString()));
+        return Left(ServerFailure.fromDioError(e));
       }
+      return Left(ServerFailure(e.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async {
+  Future<Either<Failure, List<BookEntity>>> fetchNewestBooks(
+      {int pageNumber = 0}) async {
+    List<BookEntity> books;
+
     try {
-      var data = await apiService.get(
-          endPoint: 'volumes?Filtering=free-ebooks&q=subject:flutter');
-      List<BookModel> books = [];
-      for (var book in data['items']) {
-        books.add(BookModel.fromJson(book));
+      books = homeLocalDataSource.fetchNewestBooks(pageNumber: pageNumber);
+
+      if (books.isNotEmpty) {
+        return right(books);
       }
 
-      return right(books);
+      books =
+          await homeRemoteDataSource.fetchNewestBooks(pageNumber: pageNumber);
+
+      return Right(books);
     } catch (e) {
       if (e is DioException) {
-        return left(ServerFailure.fromDioError(e));
-      } else {
-        return left(ServerFailure(e.toString()));
+        return Left(ServerFailure.fromDioError(e));
       }
+      return Left(ServerFailure(e.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, List<BookModel>>> fetchRelatedBooks(
-      {required String category}) async {
+  Future<Either<Failure, List<BookEntity>>> fetchRelatedBooks(
+      {required String category, int pageNumber = 0}) async {
+    List<BookEntity> books;
+
     try {
-      var data = await apiService.get(
-          endPoint:
-              'volumes?Sorting=relevance&Filtering=free-ebooks&q=subject:$category');
-      List<BookModel> books = [];
-      for (var book in data['items']) {
-        books.add(BookModel.fromJson(book));
+      books = homeLocalDataSource.fetchRelatedBooks(pageNumber: pageNumber);
+
+      if (books.isNotEmpty) {
+        return right(books);
       }
 
-      return right(books);
+      books = await homeRemoteDataSource.fetchRelatedBooks(
+          category: category, pageNumber: pageNumber);
+
+      return Right(books);
     } catch (e) {
       if (e is DioException) {
-        return left(ServerFailure.fromDioError(e));
-      } else {
-        return left(ServerFailure(e.toString()));
+        return Left(ServerFailure.fromDioError(e));
       }
+      return Left(ServerFailure(e.toString()));
     }
   }
 }

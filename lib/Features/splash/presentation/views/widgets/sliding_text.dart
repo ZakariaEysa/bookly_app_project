@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../core/utils/styles.dart';
 
 class SlidingText extends StatelessWidget {
   const SlidingText({
@@ -15,9 +18,10 @@ class SlidingText extends StatelessWidget {
         builder: (context, _) {
           return SlideTransition(
             position: slidingAnimation,
-            child: const Text(
-              "Read Free Books",
+            child: Text(
+              "Read, save and download Free Books",
               textAlign: TextAlign.center,
+              style: Styles.textStyle18,
             ),
           );
         });

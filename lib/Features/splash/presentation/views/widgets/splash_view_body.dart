@@ -1,5 +1,5 @@
-import 'package:bookly_app_project/Features/splash/presentation/views/widgets/sliding_text.dart';
-import 'package:bookly_app_project/core/utils/assets.dart';
+import 'sliding_text.dart';
+import '../../../../../core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -37,9 +37,14 @@ class _SplashViewBodyState extends State<SplashViewBody>
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Image.asset(AssetsData.logo),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Image.asset(
+            AssetsData.logo,
+          ),
+        ),
         const SizedBox(
-          height: 4,
+          height: 13,
         ),
         SlidingText(slidingAnimation: slidingAnimation),
       ],

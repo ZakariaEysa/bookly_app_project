@@ -1,21 +1,32 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../../data/models/book_model/book_model.dart';
-import '../../../data/repos/home_repo.dart';
+import '../../../domain/entities/book_entity.dart';
+import '../../../domain/use_cases/fetch_related_books_use_case.dart';
 
 part 'related_books_state.dart';
 
 class RelatedBooksCubit extends Cubit<RelatedBooksState> {
-  RelatedBooksCubit(this.homeRepo) : super(RelatedBooksInitial());
+  RelatedBooksCubit(this.fetchRelatedBooksUseCase)
+      : super(RelatedBooksInitial());
 
-  final HomeRepo homeRepo;
+  final FetchRelatedBooksUseCase fetchRelatedBooksUseCase;
 
-  Future<void> fetchRelatedBooks({required String category}) async {
-    emit(RelatedBooksLoading());
-    var result = await homeRepo.fetchRelatedBooks(category: category);
+  Future<void> fetchRelatedBooks(
+      {required String category, int pageNumber = 0}) async {
+    if (pageNumber == 0) {
+      emit(RelatedBooksLoading());
+    }
+
+    emit(RelatedBooksPaginationLoading());
+    var result = await fetchRelatedBooksUseCase.call(pageNumber, category);
+
     result.fold((failure) {
-      emit(RelatedBooksFailure(failure.errorMessage.toString()));
+      if (pageNumber == 0) {
+        emit(RelatedBooksFailure(failure.errorMessage.toString()));
+      }
+
+      emit(RelatedBooksPaginationFailure(failure.errorMessage.toString()));
     }, (books) {
       emit(RelatedBooksSuccess(books));
     });

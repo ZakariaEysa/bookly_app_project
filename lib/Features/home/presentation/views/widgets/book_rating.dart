@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../core/utils/styles.dart';
@@ -21,20 +22,20 @@ class BookRating extends StatelessWidget {
     return Row(
       mainAxisAlignment: alignment,
       children: [
-        const Icon(
+        Icon(
           FontAwesomeIcons.solidStar,
-          color: Color(0xffFFDD4F),
-          size: 14,
+          color: const Color(0xffFFDD4F),
+          size: 14.sp,
         ),
-        const SizedBox(
-          width: 6.3,
+        SizedBox(
+          width: 6.3.w,
         ),
-        const Text(
+        Text(
           "3.8",
           style: Styles.textStyle16,
         ),
-        const SizedBox(
-          width: 5,
+        SizedBox(
+          width: 5.w,
         ),
         Opacity(
           opacity: .5,

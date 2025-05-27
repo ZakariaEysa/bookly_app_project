@@ -1,34 +1,36 @@
-import 'package:bookly_app_project/Features/home/data/models/book_model/book_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../domain/entities/book_entity.dart';
 import 'book_rating.dart';
 import 'books_list_view_item.dart';
 
 class BookListViewItem extends StatelessWidget {
   const BookListViewItem({super.key, required this.bookModel});
 
-  final BookModel bookModel;
+  final BookEntity bookModel;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push('/bookDetailsView', extra: bookModel);
+        if (bookModel.image != null) {
+          GoRouter.of(context).push('/bookDetailsView', extra: bookModel);
+        }
       },
       child: SizedBox(
-        height: 125,
+        height: 125.h,
         child: Row(
           children: [
             BooksListViewItem(
-                imageUrl: bookModel.volumeInfo?.imageLinks?.thumbnail ??
-                    AssetsData.testImage),
-            const SizedBox(
-              width: 30,
+                imageUrl: bookModel.image ?? AssetsData.testImage),
+            SizedBox(
+              width: 30.w,
             ),
             Expanded(
               child: Column(
@@ -37,7 +39,7 @@ class BookListViewItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.sizeOf(context).width * .5,
                     child: Text(
-                      bookModel.volumeInfo!.title!,
+                      bookModel.title,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: Styles.textStyle20.copyWith(
@@ -45,16 +47,16 @@ class BookListViewItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 3,
+                  SizedBox(
+                    height: 3.h,
                   ),
                   Text(
-                    bookModel.volumeInfo!.authors![0],
+                    bookModel.authorName ?? 'Unknown',
                     style: Styles.textStyle14,
                     maxLines: 1,
                   ),
-                  const SizedBox(
-                    height: 3,
+                  SizedBox(
+                    height: 3.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,9 +67,9 @@ class BookListViewItem extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      BookRating(
-                        count: bookModel.volumeInfo!.pageCount ?? 0,
-                        rating: bookModel.volumeInfo!.maturityRating ?? "0.0",
+                      const BookRating(
+                        count: 3,
+                        rating: "3.5",
                       )
                     ],
                   )

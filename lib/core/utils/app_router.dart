@@ -1,13 +1,19 @@
-import 'package:bookly_app_project/Features/home/data/repos/home_repo_impl.dart';
-import 'package:bookly_app_project/Features/home/presentation/view_model/related_books_cubit/related_books_cubit.dart';
-import 'package:bookly_app_project/Features/home/presentation/views/book_details_view.dart';
-import 'package:bookly_app_project/Features/home/presentation/views/home_view.dart';
-import 'package:bookly_app_project/Features/search/presentation/views/search_view.dart';
-import 'package:bookly_app_project/core/utils/service_locator.dart';
+import 'package:BookNest/Features/home/data/repos/home_repo_impl.dart';
+import 'package:BookNest/Features/home/domain/entities/book_entity.dart';
+import 'package:BookNest/Features/home/domain/use_cases/fetch_related_books_use_case.dart';
+import 'package:BookNest/Features/home/presentation/view_model/related_books_cubit/related_books_cubit.dart';
+import 'package:BookNest/Features/home/presentation/views/favorite_list.dart';
+import 'package:BookNest/Features/search/data/repos/search_repo_impl.dart';
+import 'package:BookNest/Features/search/domain/use_cases/fetch_searched_books_use_case.dart';
+import 'package:BookNest/core/utils/service_locator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../Features/home/data/models/book_model/book_model.dart';
+import '../../Features/home/presentation/views/book_details_view.dart';
+import '../../Features/home/presentation/views/home_view.dart';
+import '../../Features/home/presentation/views/widgets/best_seller_list_view.dart';
+import '../../Features/search/presentation/view_models/search_cubit/search_cubit.dart';
+import '../../Features/search/presentation/views/search_view.dart';
 import '../../Features/splash/presentation/views/splash_view.dart';
 
 abstract class AppRouter {
@@ -22,16 +28,27 @@ abstract class AppRouter {
         builder: (context, state) => const HomeView(),
       ),
       GoRoute(
+        path: '/favoriteList',
+        builder: (context, state) =>
+            const FavoriteList(),
+      ),
+      GoRoute(
         path: '/bookDetailsView',
         builder: (context, state) => BlocProvider(
-            create: (context) => RelatedBooksCubit(getIt.get<HomeRepoImpl>()),
+            create: (context) => RelatedBooksCubit(
+                FetchRelatedBooksUseCase(getIt.get<HomeRepoImpl>()))
+              ..fetchRelatedBooksUseCase
+                  .call(0, (state.extra as BookEntity).category),
             child: BookDetailsView(
-              bookModel: state.extra as BookModel,
+              bookModel: state.extra as BookEntity,
             )),
       ),
       GoRoute(
         path: '/searchView',
-        builder: (context, state) => const SearchView(),
+        builder: (context, state) => BlocProvider(
+            create: (context) => SearchCubit(
+                FetchSearchedBooksUseCase(getIt.get<SearchRepoImpl>())),
+            child: SearchView(query: state.uri.queryParameters['query'])),
       ),
     ],
   );

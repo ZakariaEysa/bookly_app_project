@@ -1,0 +1,7 @@
+# flutter pub run flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/luncher1.png" # ضع مسار الصورة هنا
+  adaptive_icon_background: "#ffffff" # لون الخلفية للأيقونة التكيفية (أندرويد)
+  # adaptive_icon_foreground: "assets/icons/app_icon_adaptive.png"  # صورة المقدمة للأيقونة التكيفية

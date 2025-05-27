@@ -1,54 +1,83 @@
-import 'package:bookly_app_project/Features/home/data/models/book_model/book_model.dart';
-import 'package:bookly_app_project/Features/home/presentation/view_model/featured_books_cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/assets.dart';
-import '../../../../../core/widgets/custom_error_widget.dart';
-import '../../../../../core/widgets/custom_loading_indicator.dart';
+import '../../../domain/entities/book_entity.dart';
+import '../../view_model/featured_books_cubit/featured_books_cubit.dart';
 import 'books_list_view_item.dart';
 
-class FeaturedBooksListView extends StatelessWidget {
-  const FeaturedBooksListView({super.key});
+class FeaturedBooksListView extends StatefulWidget {
+  const FeaturedBooksListView({
+    super.key,
+    required this.books,
+  });
+
+  final List<BookEntity> books;
+
+  @override
+  State<FeaturedBooksListView> createState() => _FeaturedBooksListViewState();
+}
+
+class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
+  late ScrollController _scrollController;
+  var nextPage = 1;
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(() async {
+      double maxScroll = _scrollController.position.maxScrollExtent;
+      double currentScroll = _scrollController.position.pixels;
+      double threshold = maxScroll * 0.7;
+
+      if (currentScroll >= threshold) {
+        if (!isLoading) {
+          isLoading = true;
+          await BlocProvider.of<FeaturedBooksCubit>(context)
+              .fetchFeaturedBooks(pageNumber: nextPage++);
+          isLoading = false;
+        }
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
-      builder: (context, state) {
-        if (state is FeaturedBooksSuccess) {
-          List<BookModel> books = state.books;
-          return SizedBox(
-            height: MediaQuery.sizeOf(context).height * .3,
-            child: Padding(
-              padding: const EdgeInsetsDirectional.only(start: 18),
-              child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsetsDirectional.only(end: 12),
-                  child: GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context)
-                          .push('/bookDetailsView', extra: state.books[index]);
-                    },
-                    child: BooksListViewItem(
-                      imageUrl:
-                          books[index].volumeInfo?.imageLinks?.thumbnail ??
-                              AssetsData.testImage,
-                    ),
-                  ),
-                ),
-                scrollDirection: Axis.horizontal,
-                itemCount: books.length,
+    return SizedBox(
+      height: MediaQuery.sizeOf(context).height * .3,
+      child: Padding(
+        padding: EdgeInsetsDirectional.only(start: 18.w),
+        child: ListView.builder(
+          controller: _scrollController,
+          physics: const BouncingScrollPhysics(),
+          itemBuilder: (context, index) => Padding(
+            padding: EdgeInsetsDirectional.only(end: 12.w),
+            child: GestureDetector(
+              onTap: () {
+                if (widget.books[index].image != null) {
+                  GoRouter.of(context)
+                      .push('/bookDetailsView', extra: widget.books[index]);
+                }
+              },
+              child: BooksListViewItem(
+                imageUrl: widget.books[index].image ?? AssetsData.testImage,
               ),
             ),
-          );
-        } else if (state is FeaturedBooksFailure) {
-          return CustomErrorWidget(state.error);
-        } else {
-          return const CustomLoadingIndicator();
-        }
-      },
+          ),
+          scrollDirection: Axis.horizontal,
+          itemCount: widget.books.length,
+        ),
+      ),
     );
   }
 }
