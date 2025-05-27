@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/assets.dart';
 import '../../../../search/presentation/views/widgets/custom_search_text_field.dart';
+import '../../providers/favorites_provider.dart';
 
 class CustomHomeViewAppBar extends StatefulWidget {
   const CustomHomeViewAppBar({super.key});
@@ -60,9 +61,16 @@ class _CustomHomeViewAppBarState extends State<CustomHomeViewAppBar> {
             ),
           ),
 
-          Icon(
-            FontAwesomeIcons.heart,
-            size: 22.sp,
+          GestureDetector(
+            onTap: () {
+              GoRouter.of(context).push(
+                '/favoriteList',
+              );
+            },
+            child: Icon(
+              FontAwesomeIcons.heart,
+              size: 28.sp,
+            ),
           ),
         ],
       ),

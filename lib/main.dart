@@ -3,11 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import 'Features/home/data/repos/home_repo_impl.dart';
 import 'Features/home/domain/entities/book_entity.dart';
 import 'Features/home/domain/use_cases/fetch_featured_books_use_case.dart';
 import 'Features/home/domain/use_cases/fetch_newest_books_use_case.dart';
+import 'Features/home/presentation/providers/favorites_provider.dart';
 import 'Features/home/presentation/view_model/featured_books_cubit/featured_books_cubit.dart';
 import 'Features/home/presentation/view_model/newest_books_cubit/newest_books_cubit.dart';
 import 'constants.dart';
@@ -23,6 +25,7 @@ void main() async {
   await Hive.openBox<BookEntity>(kFeaturedBooks);
   await Hive.openBox<BookEntity>(kNewestBooks);
   await Hive.openBox<BookEntity>(kRelatedBooks);
+  await Hive.openBox<BookEntity>(kFavoriteBooks);
 
   Bloc.observer = SimpleBlocObserver();
 
@@ -52,13 +55,16 @@ class BookNest extends StatelessWidget {
                 ..fetchNewestBooks(),
             ),
           ],
-          child: MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData.dark().copyWith(
-                scaffoldBackgroundColor: kPrimaryColor,
-                textTheme: GoogleFonts.montserratTextTheme(
-                    ThemeData.dark().textTheme)),
-            routerConfig: AppRouter.router,
+          child: ChangeNotifierProvider(
+            create: (context) => FavoritesProvider(),
+            child: MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData.dark().copyWith(
+                  scaffoldBackgroundColor: kPrimaryColor,
+                  textTheme: GoogleFonts.montserratTextTheme(
+                      ThemeData.dark().textTheme)),
+              routerConfig: AppRouter.router,
+            ),
           ),
         );
       },
